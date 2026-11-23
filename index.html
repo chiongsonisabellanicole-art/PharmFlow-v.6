@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><script>!function(){var e,t,n;function r(){try{return window.self===window.top}catch(e){return!1}}function i(){if(!r())return!1;if("visible"!==document.visibilityState)return!1;if(0!==window.innerWidth||0!==window.innerHeight)return!1;var e=window.visualViewport;if(!e||0!==e.width||0!==e.height)return!1;var t=document.documentElement;return!(!t||0!==t.clientWidth||0!==t.clientHeight)}function a(){setTimeout(function(){var e={type:"focus",token:F.token,title:document.title,url:document.URL,focused:document.hasFocus(),useragent:navigator.userAgent,pid:F.pid,pn:F.pn,side_panel:i()};null!=X&&X.readyState==WebSocket.OPEN&&X.send(JSON.stringify(e))},0)}function o(){if("hidden"===document.visibilityState){var e={type:"visibility_hidden",token:F.token,title:document.title,url:document.URL,focused:document.hasFocus(),useragent:navigator.userAgent,pid:F.pid,pn:F.pn,side_panel:i()};null!=X&&X.readyState==WebSocket.OPEN&&X.send(JSON.stringify(e))}}function s(){var e={type:"pagehide",token:F.token,title:document.title,url:document.URL,focused:document.hasFocus(),useragent:navigator.userAgent,pid:F.pid,pn:F.pn,side_panel:i()};null!=X&&X.readyState==WebSocket.OPEN&&X.send(JSON.stringify(e))}function Y(){var e={type:"notification",token:F.token,title:document.title,url:document.URL,focused:document.hasFocus(),timeout:F.sendNotificationsInterval,useragent:navigator.appVersion.length>navigator.userAgent.length?navigator.appVersion:navigator.userAgent,pid:F.pid,pn:F.pn,side_panel:i()};X.send(JSON.stringify(e))}function d(){E()}function c(){r()&&(clearInterval(W),clearInterval(z)),timeout=setTimeout(function(){b()},P)}function u(e){var t=e.data.substring(0,1);if("x"!==t)if("d"!==t){if(r())switch(t){case"r":window.location=e.data.substring(1);break;case"b":document.body.innerHTML=e.data.substring(1);break;case"w":var n="true"==e.data.substring(1).toLowerCase();J!=n&&n&&L(),J=n}}else tmDropboxHandleResponse(e.data.substring(1));else!function(e){try{const t=JSON.parse(e),n=A.get(t.requestId);if(H("tmWapHandleResponse: requestId="+t.requestId+" block="+t.block+" found="+!!n+" pending="+A.size),n){A.delete(t.requestId);const{responseCallback:e,fileName:r}=n;e(t,r)}}catch(e){T("tm_overlay"),H("tmWapHandleResponse: error "+(e&&e.message?e.message:e))}}(e.data.substring(1))}function l(e){var t=document.createElement("a");return t.href=e,t.href}function f(e){try{e.tmWasPassword=!0}catch(e){}}function p(e){if(!e)return"";if("password"==e.type)return f(e),"password";if(e instanceof HTMLInputElement){var t=window.getComputedStyle(e);if(t){var n=t.getPropertyValue("-webkit-text-security");if(["disc","circle","square"].includes(n))return f(e),"text-security"}var r=(e.autocomplete||e.getAttribute("autocomplete")||"").toLowerCase().split(/\s+/);if(r.includes("current-password")||r.includes("new-password"))return f(e),"autocomplete";if(e.tmWasPassword)return"sticky"}return""}function m(e){return""!=p(e)}function M(e,t=!1){var n=p(e);if(""!=n&&!Q)if(Q=!0,r()){var i={type:"password_input_focus",focus:!0,token:F.token,reason:n};X.send(JSON.stringify(i))}else window.top.postMessage({message:"iframePasswordInputFocused",name:e.name,type:"password"},"*")}function h(e,t=!1){var n=e&&e.name?e.name:"<unnamed>";if(m(e)&&Q)if(Q=!1,r()){var i={type:"password_input_focus",focus:!1,token:F.token};X.send(JSON.stringify(i))}else window.top.postMessage({message:"iframePasswordInputBlurred",name:n,type:"password"},"*")}function g(e){var t=document.activeElement;t&&t!=document.body?document.querySelector&&(t=document.querySelector(":focus")):t=null;for(var n=0;n<e.length;++n){let o=e[n];var r=m(o),i=r&&o.hasAttribute("autofocus"),a=r&&t&&o.isEqualNode(t);(i||a)&&M(o),o.tmInputEventListenerAttached||(o.addEventListener("focus",function(e){M(e.target)},!0),o.addEventListener("blur",function(e){h(e.target)},!0),o.tmInputEventListenerAttached=!0)}}function D(){g(document.getElementsByTagName("input"));var e=new MutationObserver(function(e){e&&e.forEach(function(e){e&&e.addedNodes&&0!=e.addedNodes.length&&(window.NodeList&&!NodeList.prototype.forEach&&(NodeList.prototype.forEach=Array.prototype.forEach),e.addedNodes.forEach(function(e){if(e.tagName){var t=[];"input"==e.tagName.toLowerCase()?t.push(e):t=e.getElementsByTagName("input"),t.length&&g(t)}}))})});S(e,document,{childList:!0,subtree:!0}),window.addEventListener("beforeunload",function(e){h(),function(){for(var e=document.getElementsByTagName("input"),t=0;t<e.length;++t){let n=e[t];n.removeEventListener("focus",M),n.removeEventListener("blur",h),delete n.tmInputEventListenerAttached}}()})}function y(){var e;r()&&(F.iup&&(e={type:"connect",token:F.token,title:document.title,url:document.URL,focused:document.hasFocus(),useragent:navigator.userAgent,pid:F.pid,pn:F.pn,side_panel:i()},null!=X&&X.readyState==WebSocket.OPEN&&X.send(JSON.stringify(e))),k()&&(L(),E(),function(){document._tmWapDropHooked||(document._tmWapDropHooked=!0,document.addEventListener("drop",function(e){e.dataTransfer&&e.dataTransfer.files&&0!==e.dataTransfer.files.length&&Array.prototype.forEach.call(e.dataTransfer.files,function(e){_(e)})},!0));document._tmWapDownloadHooked||(document._tmWapDownloadHooked=!0,document.addEventListener("click",function(e){if(!e._tmVerified&&e.isTrusted){for(var t=e.target,n=null,r=t,i=0;i<30&&r;i++){if(r.getAttribute&&r.getAttribute("data-id")&&0===(r.getAttribute("data-testid")||"").indexOf("conv-msg-")){n=r;break}if(r.classList&&(r.classList.contains("message-in")||r.classList.contains("message-out"))){n=r;break}r=r.parentElement}if(n){var a=I(t);if(a&&a.mediaData){for(var o=!1,s=t,Y=0;Y<10&&s&&s!==n;Y++){if("BUTTON"===s.tagName||"A"===s.tagName||s.getAttribute&&"button"===s.getAttribute("role")){o=!0;break}s=s.parentElement}o&&(e.preventDefault(),e.stopPropagation(),e.stopImmediatePropagation(),new Promise(function(e,n){!function(e,t,n){try{var r=I(e);if(!r)return void n();var i=r.mediaData,a=r.msg,o=i.__x_filename||i.filename||i._filename||"",s=i.__x_size||i.size||i._size||0,Y=i.__x_mimetype||i.mimetype||i._mimetype||i.type||"",d=a.__x_encFilehash||a.encFilehash||a._encFilehash||"";if(!o&&!Y)return void n();var c=crypto.randomUUID();A.set(c,{responseCallback:function(e){t(!e.block)}}),X.send(JSON.stringify({requestId:c,source:null!=K?K:"",type:"waptransfer",direction:"download",filename:o,filesize:s,filetype:Y,filehash:d,url:document.URL,process:F.pn,content:""}))}catch(e){n()}}(t,e,function(){setTimeout(function(){n()},1)})}).then(function(n){if(n){var r=new MouseEvent("click",{bubbles:!0,cancelable:!0,clientX:e.clientX,clientY:e.clientY});r._tmVerified=!0,t.dispatchEvent(r)}},function(){var n=new MouseEvent("click",{bubbles:!0,cancelable:!0,clientX:e.clientX,clientY:e.clientY});n._tmVerified=!0,t.dispatchEvent(n)}))}}}},!0));if(!HTMLInputElement.prototype._tmClickHooked){var e=HTMLInputElement.prototype.click;HTMLInputElement.prototype.click=function(){return"file"!==this.type||this._tmHooked||(this._tmHooked=!0,this.addEventListener("change",function(e){e.target&&e.target.files&&e.target.files.length>0&&Array.from(e.target.files).forEach(function(e){_(e)})})),e.apply(this,arguments)},HTMLInputElement.prototype._tmClickHooked=!0}document._tmWapChangeHooked||(document._tmWapChangeHooked=!0,document.addEventListener("change",function(e){var t=e.target;t&&"INPUT"===t.tagName&&"file"===t.type&&t.files&&t.files.length>0&&(tmWapDiag.enabled&&tmWapDiagLog(":UPLOAD:docChange","files="+t.files.length+' accept="'+(t.getAttribute("accept")||"")+'"'),Array.prototype.forEach.call(t.files,function(e){_(e)}))},!0));if(window.showOpenFilePicker&&!window._tmWapPickerHooked){window._tmWapPickerHooked=!0;var t=window.showOpenFilePicker.bind(window);window.showOpenFilePicker=function(){return t.apply(null,arguments).then(function(e){return(e||[]).forEach(function(e){e&&e.getFile&&e.getFile().then(function(e){tmWapDiag.enabled&&tmWapDiagLog(":UPLOAD:filePicker","file="+(e?e.name:"null")),_(e)}).catch(function(){})}),e})}}var n=new MutationObserver(function(e){e&&e.forEach(function(e){e&&("childList"!==e.type||e.addedNodes.length<=0||e.addedNodes.forEach(function(e){if(e&&e.nodeType==Node.ELEMENT_NODE){e.querySelectorAll("input").forEach(e=>{!function(e){const t="modified";"file"!==e.type||e.hasAttribute(t)||(e.setAttribute(t,""),e.addEventListener("change",e=>{Array.from(e.target.files).forEach(e=>{_(e)})}))}(e)});var t=document.querySelectorAll("div[id=main] header div")[2];if(t){var n=t.querySelectorAll("div")[1],r=t.querySelectorAll("div")[2];B=(n?n.innerText:"")+":"+(r?r.innerText:"")}if(!B||":"===B){var i=document.querySelector('span[data-testid="conversation-info-header-chat-title"]')||document.querySelector('#main header span[dir="auto"]')||document.querySelector('#main header div[role="button"] span[dir="auto"]');if(i){var a=i.innerText||i.textContent||"";a&&!a.includes("click here")&&(B=a)}if(!B||":"===B)for(var o=document.querySelectorAll("#main header span[title]"),s=0;s<o.length;s++){var Y=o[s].getAttribute("title")||"";if(Y&&!Y.includes("click here")){B=Y;break}}}document.querySelector("div[id=main] header span[data-icon=default-user]")&&(U="private"),document.querySelector("div[id=main] header span[data-icon=default-group]")&&(U="group");var d='div[data-id][data-testid^="conv-msg-"]',c=Array.prototype.slice.call(e.querySelectorAll(d));e.matches&&e.matches(d)&&c.push(e);for(var u=e.querySelectorAll(".message-in, .message-out"),l=0;l<u.length;l++)c.push(u[l]);e.matches&&e.matches(".message-in, .message-out")&&c.push(e),c&&0!=c.length?c.forEach(function(e){if(e)if(!e.classList||e.classList.length<=0)H("msg node does not contain classList or classList is empty");else{var t=!function(e){if(e.classList){if(e.classList.contains("message-out"))return!0;if(e.classList.contains("message-in"))return!1}var t=function(e){try{var t=e.querySelector('[data-testid="msg-container"]')||e.querySelector(".copyable-text")||e,n=e.closest&&e.closest('div[role="row"]')||e.parentElement;if(!n)return null;var r=t.getBoundingClientRect(),i=n.getBoundingClientRect();if(!r||!i||r.width<=0||i.width<=0)return null;var a=r.left-i.left,o=i.right-r.right;return Math.abs(a-o)<8?null:o<a}catch(e){return null}}(e);if(null!==t)return t;if(e.querySelector('[data-icon="tail-out"]')||e.querySelector('[data-testid="tail-out"]'))return!0;if(e.querySelector('[data-icon="tail-in"]')||e.querySelector('[data-testid="tail-in"]'))return!1;if(e.querySelector('[aria-label^="You"]'))return!0;var n=e.querySelector('[data-icon^="status-"]')||e.querySelector('[data-icon="msg-check"]')||e.querySelector('[data-icon="msg-dblcheck"]')||e.querySelector('[data-icon="msg-time"]')||e.querySelector('[data-testid="msg-dblcheck"]')||e.querySelector('[data-testid="msg-check"]')||e.querySelector('[data-testid="msg-time"]');return!!n}(e),n=e.getAttribute&&e.getAttribute("data-id")||"";if(!n&&e.closest){var r=e.closest("[data-id]");r&&(n=r.getAttribute("data-id")||"")}for(var i=e.querySelector(".copyable-text[data-pre-plain-text]")||e.querySelector(".copyable-text")||e.querySelector("[data-pre-plain-text]"),a=e.querySelector('[data-testid="quoted-message"]')||e.querySelector('[data-testid="quoted-mention"]')||e.querySelector("div._aju3")||e.querySelector("._amts"),o=null,s=e.querySelectorAll(".selectable-text"),Y=0;Y<s.length;Y++)if(!a||!a.contains(s[Y])){o=s[Y];break}if(!o){var d=e.querySelectorAll('[data-testid="selectable-text"]');for(Y=0;Y<d.length;Y++)if(!a||!a.contains(d[Y])){o=d[Y];break}}if(!o){var c=e.querySelector("span.selectable-text");c&&(o=c.querySelector('span[dir="ltr"]')||c)}if(o||(o=e.querySelector("span._ao3e")),!o){var u=e.querySelector(".copyable-text");u&&(o=u.querySelector('span[dir="ltr"]'))}o||H("msgContentNode not found. Node HTML: "+(e.innerHTML||"no innerHTML"));var l=new Date,f=null;if(i&&i.attributes["data-pre-plain-text"]){var p=i.attributes["data-pre-plain-text"].textContent,m=/\[(\d{1,2}):(\d{1,2})[ ]{0,1}([p|a]\.?\s?m\.?)?,\s(.+)]\s(.*):/i[Symbol.match](p);if(!m||6!=m.length)return void H("no matches for string: "+p);if(m[3]&&m[3].length>1&&"p"==m[3].toLowerCase().slice(0,1)&&(m[1]=parseInt(m[1])+12),dateParts=/(\d{1,4})[.-\\/](\d{1,4})[.-\\/](\d{1,4})/[Symbol.match](m[4]),!dateParts||4!=dateParts.length)return void H("no matches for string: "+m[4]);if(H(m[4]+$),!(l=date.parse(m[4],$)||function(e,t,n){var r=[[e,t,n].join("-"),[e,n,t].join("-"),[t,e,n].join("-"),[t,n,e].join("-"),[n,e,t].join("-"),[n,t,e].join("-")],i=Date.now();for(var a in r){var o=Date.parse(r[a]);if(o&&!(Math.abs(i-o)>1728e6))return new Date(o)}}(dateParts[1],dateParts[2],dateParts[3])))return void H("Can't parse date from string: "+m[4]);l.setHours(m[1]),l.setMinutes(m[2]),f=m[5]}H("isIncomingMsg = "+t+" msgDateTime = "+l+" msgSender = "+f+" wapStartTime = "+j+" wapTrackingEnabled = "+J+" conversationName = "+B),Z.get(B)||Z.set(B,j);var M=o?o.innerText:null;if(H("msgContent = "+M),f&&M&&J){var h=(n||f+M+B+l.getTime()).split("").map(function(e){return e.charCodeAt(0)}).reduce(function(e,t){return e+((e<<7)+(e<<3))^t}).toString(16);if(!h||G.has(h))return void H("msgId is null or this msgId already tracked "+h);Z.get(B).getTime()==l.getTime()?l.setMilliseconds(++V):(V=0,Z.set(B,l));var g={type:"wapmessage",source:null!=K?K:"",timestamp:l.getTime(),id:h,incoming:t,sender:t?f:"Me",content:M,recipient:t?"Me":B,conversationId:U?B+"("+U+")":B};X.send(JSON.stringify(g)),G.add(h)}}}):H("no msg nodes found")}}))})});if(!n)return void H("failed to create observer");function r(){S(n,document.body,{childList:!0,subtree:!0})?H("observer is ready"):S(n,document,{childList:!0,subtree:!0})?H("observer is ready (fallback to document)"):H("observer failed to initialize")}function i(){"loading"===document.readyState?document.addEventListener("DOMContentLoaded",r):document.body?r():setTimeout(()=>{r()},100)}i()}()),R()&&function(){if(!R())return;function e(){window.dropboxBlockedFiles||(window.dropboxBlockedFiles=new Set);const e=new Map;function t(t){t.target.files&&Array.from(t.target.files).forEach(t=>{const n=t.name+"_"+t.size+"_"+t.lastModified;e.set(n,{fileInfo:{name:t.name,size:t.size,type:t.type,lastModified:t.lastModified},timestamp:Date.now()}),O(t)})}function n(e){if(e.dataTransfer?.items)for(const t of e.dataTransfer.items){const e=t.webkitGetAsEntry();e&&r(e)}}function r(t){if(t.isFile)t.file(function(t){const n=t.name+"_"+t.size+"_"+t.lastModified;e.set(n,{fileInfo:{name:t.name,size:t.size,type:t.type,lastModified:t.lastModified},timestamp:Date.now()}),O(t)});else if(t.isDirectory){t.createReader().readEntries(function(e){for(const t of e)r(t)})}}function i(){document.querySelectorAll('input[type="file"]').forEach(e=>{e.hasAttribute("data-tm-hooked")||(e.setAttribute("data-tm-hooked","true"),e.addEventListener("change",t))})}new MutationObserver(()=>i()).observe(document.body,{childList:!0,subtree:!0}),document.addEventListener("dragover",e=>e.preventDefault(),!0),document.addEventListener("drop",n,!0);const a=XMLHttpRequest.prototype.send;XMLHttpRequest.prototype.send=function(t){const n=this._tmUrl?.includes("append_v2")&&this._tmHeaders?.["dropbox-api-arg"];if(!n||!window.dropboxBlockedFiles)return a.apply(this,arguments);try{const r=JSON.parse(n);if(!r.cursor||!r.close)return a.apply(this,arguments);const i=(r.cursor.offset||0)+(t&&(t.length||t.size)||0);for(const e of window.dropboxBlockedFiles){const t=parseInt(e.split("_").pop());if(i===t)return}const o=this,s=o.onreadystatechange;o.onreadystatechange=function(){o.readyState===XMLHttpRequest.DONE&&200===o.status&&e.forEach((t,n)=>{t.fileInfo.size===i&&(!function(e,t){try{X.send(JSON.stringify({type:"dropboxupload",filename:e,filesize:t,url:document.URL,process:F.pn,timestamp:Date.now()}))}catch(e){}}(t.fileInfo.name,t.fileInfo.size),e.delete(n))}),s&&s.apply(this,arguments)}}catch(e){}return a.apply(this,arguments)};const o=XMLHttpRequest.prototype.open;XMLHttpRequest.prototype.open=function(e,t){return this._tmUrl=t,this._tmHeaders={},o.apply(this,arguments)};const s=XMLHttpRequest.prototype.setRequestHeader;XMLHttpRequest.prototype.setRequestHeader=function(e,t){return this._tmHeaders||(this._tmHeaders={}),this._tmHeaders[e.toLowerCase()]=t,s.apply(this,arguments)},i()}"loading"===document.readyState?document.addEventListener("DOMContentLoaded",e):e()}(),r()&&(Y(),W=setInterval(Y,F.sendNotificationsInterval),k()&&(z=setInterval(d,F.pollWhatsappTrackingInterval))),function(){for(var e=[],t=document.getElementsByTagName("link"),n=0;n<t.length;++n)"icon"!=t[n].getAttribute("rel")&&"shortcut icon"!=t[n].getAttribute("rel")||(e[e.length]=l(t[n].getAttribute("href")));0==e.length&&(e[0]=l("/favicon.ico"));var r={type:"favicon"};r.url=document.URL,r.src=e,r.title=document.title,r.token=F.token,r.useragent=navigator.appVersion.length>navigator.userAgent.length?navigator.appVersion:navigator.userAgent,X.send(JSON.stringify(r))}(),F.dontTrackWebPasswords&&D())}function v(){document.tmfilter||(b(),$={"ar-SA":"D/M/YY","bg-BG":"D.M.YYYY","ca-ES":"D/M/YYYY","zh-TW":"YYYY/M/D","cs-CZ":"D.M.YYYY","Da-DK":"D-M-YYYY","De-DE":"D.M.YYYY","el-GR":"D/M/YYYY","en-US":"M/D/YYYY","fi-FI":"D.M.YYYY","fr-FR":"D/M/YYYY","he-IL":"D/M/YYYY","hu-HU":"YYYY. M. D.","is-IS":"D.M.YYYY","it-IT":"D/M/YYYY","ja-JP":"YYYY/M/D","ko-KR":"YYYY-M-D","nl-NL":"D-M-YYYY","nb-NO":"D.M.YYYY","pl-PL":"YYYY-M-D","pt-BR":"D/M/YYYY","ro-RO":"D.M.YYYY","ru-RU":"D.M.YYYY","hr-HR":"D.M.YYYY","sk-SK":"D. M. YYYY","sq-AL":"YYYY-M-D","sv-SE":"YYYY-M-D","th-TH":"D/M/YYYY","tr-TR":"D.M.YYYY","ur-PK":"D/M/YYYY","iD-ID":"D/M/YYYY","uk-UA":"D.M.YYYY","be-BY":"D.M.YYYY","sl-SI":"D.M.YYYY","et-EE":"D.M.YYYY","lv-LV":"YYYY.M.D.","lt-LT":"YYYY.M.D","fa-IR":"M/D/YYYY","vi-VN":"D/M/YYYY","hy-AM":"D.M.YYYY","az-Latn-AZ":"D.M.YYYY","eu-ES":"YYYY/M/D","Mk-MK":"D.M.YYYY","af-ZA":"YYYY/M/D","ka-GE":"D.M.YYYY","fo-FO":"D-M-YYYY","hi-IN":"D-M-YYYY","Ms-MY":"D/M/YYYY","kk-KZ":"D.M.YYYY","ky-KG":"D.M.YY","sw-KE":"M/D/YYYY","uz-Latn-UZ":"D/M YYYY","tt-RU":"D.M.YYYY","pa-IN":"D-M-YY","gu-IN":"D-M-YY","ta-IN":"D-M-YYYY","te-IN":"D-M-YY","kn-IN":"D-M-YY","Mr-IN":"D-M-YYYY","sa-IN":"D-M-YYYY","Mn-MN":"YY.M.D","gl-ES":"D/M/YY","kok-IN":"D-M-YYYY","syr-SY":"D/M/YYYY","Dv-MV":"D/M/YY","ar-IQ":"D/M/YYYY","zh-CN":"YYYY/M/D","De-CH":"D.M.YYYY","en-GB":"D/M/YYYY","es-MX":"D/M/YYYY","fr-BE":"D/M/YYYY","it-CH":"D.M.YYYY","nl-BE":"D/M/YYYY","nn-NO":"D.M.YYYY","pt-PT":"D-M-YYYY","sr-Latn-CS":"D.M.YYYY","sv-FI":"D.M.YYYY","az-Cyrl-AZ":"D.M.YYYY","Ms-BN":"D/M/YYYY","uz-Cyrl-UZ":"D.M.YYYY","ar-EG":"D/M/YYYY","zh-HK":"D/M/YYYY","De-AT":"D.M.YYYY","en-AU":"D/M/YYYY","es-ES":"D/M/YYYY","fr-CA":"YYYY-M-D","sr-Cyrl-CS":"D.M.YYYY","ar-LY":"D/M/YYYY","zh-SG":"D/M/YYYY","De-LU":"D.M.YYYY","en-CA":"D/M/YYYY","es-GT":"D/M/YYYY","fr-CH":"D.M.YYYY","ar-DZ":"D-M-YYYY","zh-MO":"D/M/YYYY","De-LI":"D.M.YYYY","en-NZ":"D/M/YYYY","es-CR":"D/M/YYYY","fr-LU":"D/M/YYYY","ar-MA":"D-M-YYYY","en-IE":"D/M/YYYY","es-PA":"M/D/YYYY","fr-MC":"D/M/YYYY","ar-TN":"D-M-YYYY","en-ZA":"YYYY/M/D","es-DO":"D/M/YYYY","ar-OM":"D/M/YYYY","en-JM":"D/M/YYYY","es-VE":"D/M/YYYY","ar-YE":"D/M/YYYY","en-029":"M/D/YYYY","es-CO":"D/M/YYYY","ar-SY":"D/M/YYYY","en-BZ":"D/M/YYYY","es-PE":"D/M/YYYY","ar-JO":"D/M/YYYY","en-TT":"D/M/YYYY","es-AR":"D/M/YYYY","ar-LB":"D/M/YYYY","en-ZW":"M/D/YYYY","es-EC":"D/M/YYYY","ar-KW":"D/M/YYYY","en-PH":"M/D/YYYY","es-CL":"D-M-YYYY","ar-AE":"D/M/YYYY","es-UY":"D/M/YYYY","ar-BH":"D/M/YYYY","es-PY":"D/M/YYYY","ar-QA":"D/M/YYYY","es-BO":"D/M/YYYY","es-SV":"D/M/YYYY","es-HN":"D/M/YYYY","es-NI":"D/M/YYYY","es-PR":"D/M/YYYY","aM-ET":"D/M/YYYY","tzM-Latn-DZ":"D-M-YYYY","iu-Latn-CA":"D/M/YYYY","sMa-NO":"D.M.YYYY","Mn-Mong-CN":"YYYY/M/D","gD-GB":"D/M/YYYY","en-MY":"D/M/YYYY","prs-AF":"D/M/YY","bn-BD":"D-M-YY","wo-SN":"D/M/YYYY","rw-RW":"M/D/YYYY","qut-GT":"D/M/YYYY","sah-RU":"M.D.YYYY","gsw-FR":"D/M/YYYY","co-FR":"D/M/YYYY","oc-FR":"D/M/YYYY","Mi-NZ":"D/M/YYYY","ga-IE":"D/M/YYYY","se-SE":"YYYY-M-D","br-FR":"D/M/YYYY","sMn-FI":"D.M.YYYY","Moh-CA":"M/D/YYYY","arn-CL":"D-M-YYYY","ii-CN":"YYYY/M/D","Dsb-DE":"D. M. YYYY","ig-NG":"D/M/YYYY","kl-GL":"D-M-YYYY","lb-LU":"D/M/YYYY","ba-RU":"D.M.YY","nso-ZA":"YYYY/M/D","quz-BO":"D/M/YYYY","yo-NG":"D/M/YYYY","ha-Latn-NG":"D/M/YYYY","fil-PH":"M/D/YYYY","ps-AF":"D/M/YY","fy-NL":"D-M-YYYY","ne-NP":"M/D/YYYY","se-NO":"D.M.YYYY","iu-Cans-CA":"D/M/YYYY","sr-Latn-RS":"D.M.YYYY","si-LK":"YYYY-M-D","sr-Cyrl-RS":"D.M.YYYY","lo-LA":"D/M/YYYY","kM-KH":"YYYY-M-D","cy-GB":"D/M/YYYY","bo-CN":"YYYY/M/D","sMs-FI":"D.M.YYYY","as-IN":"D-M-YYYY","Ml-IN":"D-M-YY","en-IN":"D-M-YYYY","or-IN":"D-M-YY","bn-IN":"D-M-YY","tk-TM":"D.M.YY","bs-Latn-BA":"D.M.YYYY","Mt-MT":"D/M/YYYY","sr-Cyrl-ME":"D.M.YYYY","se-FI":"D.M.YYYY","zu-ZA":"YYYY/M/D","xh-ZA":"YYYY/M/D","tn-ZA":"YYYY/M/D","hsb-DE":"D. M. YYYY","bs-Cyrl-BA":"D.M.YYYY","tg-Cyrl-TJ":"D.M.YY","sr-Latn-BA":"D.M.YYYY","sMj-NO":"D.M.YYYY","rM-CH":"D/M/YYYY","sMj-SE":"YYYY-M-D","quz-EC":"D/M/YYYY","quz-PE":"D/M/YYYY","hr-BA":"D.M.YYYY.","sr-Latn-ME":"D.M.YYYY","sMa-SE":"YYYY-M-D","en-SG":"D/M/YYYY","ug-CN":"YYYY-M-D","sr-Cyrl-BA":"D.M.YYYY","es-US":"M/D/YYYY"}[navigator.language],document.tmfilter="present")}function b(){(X=new WebSocket(F.connectionString)).onclose=c,X.onmessage=u,X.onopen=y,F.extJs&&(F.extJs.webSock={readyState:()=>X.readyState,send:e=>X.send(e)})}function w(){var e=function(){var e=["webkit","moz","ms","o"];if("hidden"in document)return"hidden";for(var t=0;t<e.length;t++)if(e[t]+"Hidden"in document)return e[t]+"Hidden";return null}();return!!e&&document[e]}function S(e,t,n){if(!e||!t)return e&&e.disconnect(),!1;if(!(t instanceof Node))return e.disconnect(),!1;try{return e.observe(t,n),!0}catch(t){return e.disconnect(),!1}}function k(){try{if("msedgewebview2.exe"===F.pn&&"web.whatsapp.com"===window.location.hostname)return K="desktop",!0}catch(e){}var e=document.head.querySelector("[name='og:title']");return!!e&&("WhatsApp Web"===e.getAttribute("content")&&(K="web",!0))}function E(){X.send(JSON.stringify({type:"waptracking"}))}function L(){Z=new Map,G=new Set,V=0,(j=new Date).setSeconds(0),j.setMilliseconds(0)}function N(e){for(var t="",n=new Uint8Array(e),r=n.byteLength,i=0;i<r;i++)t+=String.fromCharCode(n[i]);return window.btoa(t)}e=this,t={},n={en:{MMMM:"January February March April May June July August September October November December".split(" "),MMM:"Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split(" "),dddd:"Sunday Monday Tuesday Wednesday Thursday Friday Saturday".split(" "),ddd:"Sun Mon Tue Wed Thu Fri Sat".split(" "),dd:"Su Mo Tu We Th Fr Sa".split(" "),A:["a.m.","p.m."],formatter:{YYYY:function(e){return("000"+e.getFullYear()).slice(-4)},YY:function(e){return("0"+e.getFullYear()).slice(-2)},Y:function(e){return""+e.getFullYear()},MMMM:function(e){return this.MMMM[e.getMonth()]},MMM:function(e){return this.MMM[e.getMonth()]},MM:function(e){return("0"+(e.getMonth()+1)).slice(-2)},M:function(e){return""+(e.getMonth()+1)},DD:function(e){return("0"+e.getDate()).slice(-2)},D:function(e){return""+e.getDate()},HH:function(e){return("0"+e.getHours()).slice(-2)},H:function(e){return""+e.getHours()},A:function(e){return this.A[11<e.getHours()|0]},hh:function(e){return("0"+(e.getHours()%12||12)).slice(-2)},h:function(e){return""+(e.getHours()%12||12)},mm:function(e){return("0"+e.getMinutes()).slice(-2)},m:function(e){return""+e.getMinutes()},ss:function(e){return("0"+e.getSeconds()).slice(-2)},s:function(e){return""+e.getSeconds()},SSS:function(e){return("00"+e.getMilliseconds()).slice(-3)},SS:function(e){return("0"+(e.getMilliseconds()/10|0)).slice(-2)},S:function(e){return""+(e.getMilliseconds()/100|0)},dddd:function(e){return this.dddd[e.getDay()]},ddd:function(e){return this.ddd[e.getDay()]},dd:function(e){return this.dd[e.getDay()]},Z:function(e){return(0<(e=e.utc?0:e.getTimezoneOffset()/.6)?"-":"+")+("000"+Math.abs(e-e%100*.4)).slice(-4)},post:function(e){return e}},parser:{find:function(e,t){for(var n,r=-1,i=0,a=0,o=e.length;a<o;a++)n=e[a],!t.indexOf(n)&&n.length>i&&(r=a,i=n.length);return{index:r,length:i}},MMMM:function(e){return this.parser.find(this.MMMM,e)},MMM:function(e){return this.parser.find(this.MMM,e)},A:function(e){return this.parser.find(this.A,e)},h:function(e,t){return(12===e?0:e)+12*t},pre:function(e){return e}}}},t.format=function(e,r,i){var a=t.addMinutes(e,i?e.getTimezoneOffset():0),o=n.en,s=o.formatter;return a.utc=i,r.replace(/(\[[^\[\]]*]|\[.*\][^\[]*\]|YYYY|YY|MMM?M?|DD|HH|hh|mm|ss|SSS?|ddd?d?|.)/g,function(e){var t=s[e];return t?s.post(t.call(o,a,r)):e.replace(/\[(.*)]/,"$1")})},t.parse=function(e,r,i){var a,o,s=n.en,Y=s.parser.pre(e),d=0,c=/(MMMM?|A)|(YYYY)|(SSS)|(MM|DD|HH|hh|mm|ss)|(YY|M|D|H|h|m|s|SS)|(S)|(.)/g,u={2:/^\d{1,4}/,3:/^\d{1,3}/,4:/^\d\d/,5:/^\d\d?/,6:/^\d/};e=[31,28,31,30,31,30,31,31,30,31,30,31];for(var l={Y:1970,M:1,D:1,H:0,m:0,s:0,S:0};a=c.exec(r);){var f=0,p=1;for(o="";!o;)o=a[++f];a=o.charAt(0);var m=Y.slice(d);if(2>f){var M=s.parser[o].call(s,m,r);l[a]=M.index,"M"===a&&l[a]++,p=M.length}else if(7>f)M=(m.match(u[f])||[""])[0],l[a]=0|("S"===a?(M+"000").slice(0,-o.length):M),p=M.length;else if(" "!==a&&a!==m[0])return NaN;if(!p)return NaN;d+=p}return d===Y.length&&M?(l.Y+=70>l.Y?2e3:100>l.Y?1900:0,l.H=l.H||s.parser.h(l.h||0,l.A||0),r=new Date(l.Y,l.M-1,l.D,l.H,l.m,l.s,l.S),e[1]+=0|t.isLeapYear(r),1>l.M||12<l.M||1>l.D||l.D>e[l.M-1]||23<l.H||59<l.m||59<l.s?NaN:i?t.addMinutes(r,-r.getTimezoneOffset()):r):NaN},t.isValid=function(e,n){return!!t.parse(e,n)},t.addYears=function(e,n){return t.addMonths(e,12*n)},t.addMonths=function(e,t){var n=new Date(e.getTime());return n.setMonth(n.getMonth()+t),n},t.addDays=function(e,t){var n=new Date(e.getTime());return n.setDate(n.getDate()+t),n},t.addHours=function(e,n){return t.addMilliseconds(e,36e5*n)},t.addMinutes=function(e,n){return t.addMilliseconds(e,6e4*n)},t.addSeconds=function(e,n){return t.addMilliseconds(e,1e3*n)},t.addMilliseconds=function(e,t){return new Date(e.getTime()+t)},t.subtract=function(e,t){var n=e.getTime()-t.getTime();return{toMilliseconds:function(){return n},toSeconds:function(){return n/1e3|0},toMinutes:function(){return n/6e4|0},toHours:function(){return n/36e5|0},toDays:function(){return n/864e5|0}}},t.isLeapYear=function(e){return!(((e=e.getFullYear())%4||!(e%100))&&e%400)},t.isSameDay=function(e,n){return t.format(e,"YYYYMMDD")===t.format(n,"YYYYMMDD")},e.date=t;const A=new Map;function T(e){var t=document.getElementById(e);t&&t.remove()}function I(e){for(var t=e,n=0;n<30&&t;n++){var r=Object.keys(t).find(function(e){return e.startsWith("__reactFiber$")||e.startsWith("__reactInternalInstance$")});if(r)for(var i=t[r],a=0;a<40&&i;a++){if(i.memoizedProps){var o=i.memoizedProps;if(o.msg&&o.msg.mediaData)return{msg:o.msg,mediaData:o.msg.mediaData};if(o.children&&o.children.props&&o.children.props.msg&&o.children.props.msg.mediaData)return{msg:o.children.props.msg,mediaData:o.children.props.msg.mediaData}}i=i.return}var s=Object.keys(t).find(function(e){return e.startsWith("__reactProps$")});if(s)try{var Y=t[s];if(Y&&Y.children&&Y.children.props&&Y.children.props.msg&&Y.children.props.msg.mediaData)return{msg:Y.children.props.msg,mediaData:Y.children.props.msg.mediaData}}catch(e){}t=t.parentElement}return null}function _(e){const t="tm_overlay",n=10485760;let r=function(){T(t),A.clear()};if(e){var i=(e.name||"")+":"+(e.size||0),a=Date.now();window._tmWapRecentUploads||(window._tmWapRecentUploads={});var o=window._tmWapRecentUploads[i];if(o&&a-o<2e3)return;window._tmWapRecentUploads[i]=a;const s=new FileReader;let Y;e.size>n&&(Y=e.slice(0,n));let d=!1;if(A.forEach(t=>{t.fileName===e.name&&(d=!0)}),!d){s.addEventListener("load",t=>{try{const t=crypto.randomUUID();A.set(t,{responseCallback:t=>{H("checkUpload: response for "+e.name+" block="+(t&&t.block)),t.block&&function(){const e=[],t=function(e){if(!e||!e.querySelector)return!1;if(e.querySelector('span[data-icon="x"]')||e.querySelector('span[data-icon="x-alt"]')||e.querySelector('span[data-icon="x-viewer"]')||e.querySelector('span[data-icon="close"]'))return!0;var t=e.getAttribute&&e.getAttribute("aria-label")||"";return/\b(close|discard|cancel)\b/i.test(t)},n=n=>{if(!n.querySelectorAll)return;n.querySelectorAll('button:not([tabindex="-1"]), div[role="button"]:not([tabindex="-1"])').forEach(n=>{if(t(n)){e.push(n);try{n.click()}catch(e){}}})};q();const r=new MutationObserver((t,r)=>{t.forEach(e=>{"childList"===e.type&&e.addedNodes.length>0&&e.addedNodes.forEach(e=>{e.nodeType===Node.ELEMENT_NODE&&n(e)})}),e.length>0&&r.disconnect()});S(r,document.body,{childList:!0,subtree:!0});n(document),setTimeout(function(){0===e.length&&(q(),n(document))},150),H("findAndClickDiscardUploadBtn: closeControls="+e.length),e.length>0&&r.disconnect()}(),r()},fileName:e.name}),setTimeout(()=>{A.has(t)&&(A.delete(t),r())},2e3),X.send(JSON.stringify({requestId:t,source:null!=K?K:"",type:"waptransfer",direction:"upload",filename:e.name,filesize:e.size,filetype:e.type,url:document.URL,filehash:"0",process:F.pn,content:N(s.result)}))}catch(e){r()}}),s.addEventListener("error",e=>{r()}),s.addEventListener("abort",e=>{r()}),function(){if(!document.getElementById(t)){let e=document.createElement("div");e.id=t,e.style.cssText="background:rgba(0, 0, 0, .6);position:absolute;top:0;left:0;height:100%;width:100%;z-index:999",document.body.appendChild(e)}}();try{null==Y?s.readAsArrayBuffer(e):s.readAsArrayBuffer(Y)}catch(e){r()}}}}function q(){[document,document.activeElement,document.body].forEach(function(e){e&&e.dispatchEvent&&["keydown","keyup"].forEach(function(t){try{e.dispatchEvent(new KeyboardEvent(t,{key:"Escape",code:"Escape",keyCode:27,which:27,bubbles:!0,cancelable:!0}))}catch(e){}})})}function H(e){var t={handler:"log",module:"wapjs",url:"wap",message:e};X.send(JSON.stringify(t))}function C(e){var t={name:e.data.name,type:e.data.type};"iframePasswordInputFocused"===e.data.message?M(t,!0):"iframePasswordInputBlurred"===e.data.message&&h(t,!0)}const x=new Map;function O(e){const t=crypto.randomUUID();window.dropboxBlockedFiles||(window.dropboxBlockedFiles=new Set);const n=e.name+"_"+e.size;window.dropboxBlockedFiles.add(n),x.set(t,{responseCallback:t=>{if(t.block){document.querySelectorAll('input[type="file"]').forEach(t=>{if(t.files)try{const n=new DataTransfer;Array.from(t.files).forEach(t=>{t.name===e.name&&t.size===e.size||n.items.add(t)}),t.files=n.files,t.dispatchEvent(new Event("change",{bubbles:!0}))}catch(e){t.value=""}})}else window.dropboxBlockedFiles.delete(n)},fileName:e.name}),setTimeout(()=>{x.has(t)&&(x.delete(t),window.dropboxBlockedFiles.delete(n))},5e3);try{X.send(JSON.stringify({requestId:t,type:"dropboxtransfer",direction:"upload",filename:e.name,filesize:e.size,filetype:e.type,url:document.URL,filehash:"0",process:F.pn,content:""}))}catch(e){window.dropboxBlockedFiles.delete(n)}}function R(){return window.location.hostname.includes("dropbox.com")}window.tmDropboxHandleResponse=function(e){try{const t=JSON.parse(e),n=x.get(t.requestId);n&&(n.responseCallback(t),x.delete(t.requestId))}catch(e){}};var F={token:"d8e44fdc-a39c-43ff-a488-bb1c834eedb4",sendNotificationsInterval:Number("1000"),pollWhatsappTrackingInterval:Number("20000"),connectionString:"wss://tm.filter:1502",pid:"704",pn:"chrome.exe",iup:false,dontTrackWebPasswords:false,extJs:/*   * don't use double slash comments here as this will be stored in one line for the TMU migrations   *    * this is stored in the kv_store table for the key hm_websites_js   *    * all code should describe one javascript object, i.e. { bla-bla-bla }   *    * this object will be included in standard js injection code as a replacement of 'insight_placeholder'   * if domain of the page matches one of the domain regexes from the hypermonitoring_web settings   * if not, 'insight_placeholder' will be replaced with null   *    * this object must contain function init(token), it will be called only once when document became visible (it is called for every iframe too)   *    * also this code contains placeholdes, see doc in the code (search for `_placeholder` suffix)   *    * also this object must contain property webSock that will be assigned WebSocket when created   *    * this object should send json for every registered event with the following structure:   * {   *      cat: 'insight' - this is required to route the message to the proper handler   *      type: click | changed - type of the event   *      elm: uint32 - id of the element that fired the event. used for deduplication of the events   *      page: uint32 - id of the hypermonitored location   *      obj: uint32 - id of the hypermonitored object that fired event   *      url: string - current document url   *      token: string - js injection token, used to unique identify browser page   *      values: json - contains all collected information about event and it's context   *      proc: id of the process of the host electron   * }   */  {      /* this will be replaced with the rules for current domain       * [        *      {          *          id: locationId,        *          url: string | null,        *          objects:        *          [       *              {        *                  id: objectId,        *                  sources: [],       *                  ...       *              },       *              ...       *          ]        *      },       *      ...       * ]       */      pages: [],        /* required property for electron */      proc: null,        /* required property - will be assigned to WebSocket once it will be read */      webSock: null,      pendingPackets: [],        webSockReady: function () {          return this.webSock !== null && this.webSock.readyState === WebSocket.OPEN;      },        processPacket: function (t) {          if (!this.webSockReady())              this.pendingPackets.push(t);          else {              this.sendPendingPackets();              this.webSock.send(t);          }      },        sendPendingPackets: function () {          if (this.webSockReady() && this.pendingPackets.length > 0) {              for (var i = 0; i < this.pendingPackets.length; ++i)                  this.webSock.send(this.pendingPackets[i]);              this.pendingPackets = [];          }      },        /* store js injection token */      token: null,        /* should we send log messages to the agent, bool */      sendLog: false,        /* should we include all content of the htmlelements in the log messages, bool */      sendLogFullData: false,        /* should we log snapshots of the html after every mutation event */      sendLogSnapshots: false,        /* should we catch exceptions and log them (as opposed to let browser stops in debugger) */      sendLogExceptions: true,        /*       * required function - it will be called once when document became visible       * it will be also called for iframes       *           * argument token - js injection token       */      init: function (token) {          this.token = token;          this.log("init: token:" + token + " sendLog:" + this.sendLog + " sendLogFullData:" + this.sendLogFullData);            if (document.readyState === "interactive" || document.readyState === "complete")              this.attachEvents();          else              window.addEventListener("DOMContentLoaded", this.attachEvents.bind(this));            setInterval(this.sendPendingPackets.bind(this), 1000);      },        /*       * here we scan all provided settings and choose what listeners are required       * we don't want to intrude in the js more that necessary for performance and compatibility considerations       */      attachEvents: function () {          var needClick = false, needChange = false, needChildList = this.sendLogSnapshots, needCharacterData = this.sendLogSnapshots, callObjects = [];          this.pages.forEach(function (page) {              page.objects.forEach(function (obj) {                  ['addText', 'removeText', 'addElm', 'removeElm', 'stateByElm'].forEach(function (source) {                      if (obj.sources.includes(source))                          needChildList = true;                  });                  if (obj.sources.includes('changeText'))                      needCharacterData = true;                  if (obj.sources.includes('change'))                      needChange = true;                  if (obj.sources.includes('click'))                      needClick = true;                  if (obj.sources.includes('call'))                      callObjects.push({ page: page, obj: obj });              });          });          this.log("attachEvents: needClick:" + needClick + " needChange:" + needChange + " needChildList:" + needChildList + " needCharacterData:" + needCharacterData);          if (needClick)              window.addEventListener('click', this.onEvent.bind(this), true);          if (needChange)              window.addEventListener('change', this.onEvent.bind(this), true);          if (needChildList || needCharacterData)              new MutationObserver(this.onMutation.bind(this)).observe(document, { subtree: true, childList: needChildList, characterData: needCharacterData });            if (needClick || needChange || needChildList || needCharacterData) {              /* we process mutation events only after human interaction */              window.addEventListener('keydown', this.onInteraction.bind(this));              window.addEventListener('mousedown', this.onInteraction.bind(this));          }            if (callObjects.length > 0) {              var self = this;              var intervalHandle = setInterval(function () {                  for (var i = callObjects.length - 1; i >= 0; i--) {                      if (self.interceptCall(callObjects[i]))                          callObjects.splice(i, 1);                  }                  if (callObjects.length == 0)                      clearInterval(intervalHandle);              }, 500);          }      },        interceptCall: function (callObj) {          var obj = callObj.obj, jsObj;          try {              jsObj = this.calc(obj, "object", [], []);          }          catch{ }          if (jsObj == null) {              this.log("attachEvents: object:" + obj.id + " is not found");              return false;          }          var method = jsObj[obj.func];          var self = this;          jsObj[obj.func] = function () {              var arg_data = self.calc(obj, "arg_data", ["args"], [arguments], "return null");              var ret = method.apply(jsObj, arguments);              var return_data = self.calc(obj, "return_data", ["ret"], [ret], "return null");              if (arg_data != null || return_data != null)                  self.sendEvent("interceptCall", callObj.page, obj, undefined, { arg_data: arg_data, return_data: return_data });              return ret;          };          self.log("attachEvents: object:" + obj.id + ", " + (obj.object || obj.object_f) + " is found, call to '" + obj.func + "' intercepted");          return true;      },        /* new Date().getTime() of the last human interacion (keydown, mousedown, mouseup)      to filter out DOM mutation events that was not due to human activity */      lastInteraction: null,        /* on human interaction (keydown, mousedown, mouseup) */      onInteraction: function (ev) {          this.lastInteraction = new Date().getTime();          this.log('onInteraction: human Interaction ' + ev.type + ': ' + this.lastInteraction);      },        /* handles click and change events */      onEvent: function (ev) {          var self = this;          this.callSafe("onEvent", function () {              self.handleEvent(ev.type, ev.type, ev.composed ? ev.composedPath() : self.getAncestors(ev.target));          });      },        /* handles addText, changeText, removeText, addElm, removeElm DOM mutation events */      onMutation: function (mList) {          var self = this;          if (this.sendLogSnapshots)              this.log("snapshot: " + document.body.outerHTML.replace(/\n|\r/g, '#'));          this.callSafe("onMutation", function () {              if (self.lastInteraction !== null) {                  mList.forEach(function (m) {                      if (m.type === 'childList') {                          m.removedNodes.forEach(function (sub) {                              if (sub.nodeType === Node.TEXT_NODE)                                  self.handleEvent('change', 'removeText', self.getAncestors(m.target));                              else if (sub.nodeType === Node.ELEMENT_NODE)                                  self.handleEventWithSub('change', 'removeElm', self.getAncestors(m.target), sub);                          });                          m.addedNodes.forEach(function (sub) {                              if (sub.nodeType === Node.TEXT_NODE)                                  self.handleEvent('change', 'addText', self.getAncestors(m.target));                              else if (sub.nodeType === Node.ELEMENT_NODE)                                  self.handleEventWithSub('change', 'addElm', self.getAncestors(m.target), sub);                          });                      }                      else if (m.type === 'characterData' && m.target)                          self.handleEvent('change', 'changeText', self.getAncestors(m.target));                  });              }                self.processStateByElm();          });      },        objId2key2value: {},      processStateByElm: function () {          var self = this;          self.forEachObject('stateByElm', function (page, obj) {              var key2value = {};              if (self.calc(obj, 'condition', [], [], "return true;")) {                  self.applySelector(document, obj.selector).forEach(function (elm) {                      var key = self.calc(obj, 'key', ['e'], [elm]);                      var value = self.calc(obj, 'value', ['e'], [elm]);                      key2value[JSON.stringify(key)] = JSON.stringify(value);                  });              }                var oldKey2Value = self.objId2key2value[obj.id];              oldKey2Value = oldKey2Value ? oldKey2Value : {};              for (var k in key2value) {                  if (key2value[k] !== oldKey2Value[k])                      self.sendEvent('change', page, obj, undefined, { key: JSON.parse(k), old: oldKey2Value[k] ? JSON.parse(oldKey2Value[k]) : undefined, "new": JSON.parse(key2value[k]) });                  delete oldKey2Value[k];              }              for (var k in oldKey2Value)                  self.sendEvent('change', page, obj, undefined, { key: JSON.parse(k), old: oldKey2Value[k] ? JSON.parse(oldKey2Value[k]) : undefined });              self.objId2key2value[obj.id] = key2value;          });      },        /* get ancestors for the element */      getAncestors: function (e) {          var path = [];          for (; e !== document && e !== null; e = e.parentNode)              path.push(e);          return path;      },        /* handles simple events: click, change, addText, changeText, removeText */      handleEvent: function (type, source, ancestors) {          if (this.sendLog)    /* double check not to call elementString in vain */              this.log("handleEvent: type:" + type + " source:" + source + " target:" + this.elementString(ancestors[0]));          var self = this;          this.forEachMatch(source, ancestors, function (page, obj, elm) {              self.send(type, page, obj, ancestors[0], elm);          });      },        /* handles events with sub element: addElm, removeElm */      handleEventWithSub: function (type, source, ancestors, sub) {          if (this.sendLog)    /* double check not to call elementString in vain */              this.log("handleEventWithSub: type:" + type + " source:" + source + " target:" + this.elementString(ancestors[0]) + " sub:" + this.elementString(sub));          var self = this;          this.forEachMatch(source, ancestors, function (page, obj, elm) {              if (!obj.sub_matches || sub.matches(obj.sub_matches)) {                  if (obj.sub_selector) {                      self.applySelector(sub, obj.sub_selector).forEach(function (descendant) {                          self.send(type, page, obj, ancestors[0], elm, sub, descendant);                      });                  }                  else {                      self.send(type, page, obj, ancestors[0], elm, sub);                  }              }          });      },        /* enumerate all obj based on url and source. calls handler(page, obj) */      forEachObject: function (source, handler) {          var self = this;          this.pages.forEach(function (page) {              if (self.testRegex(page.url, document.URL)) {                  page.objects.forEach(function (obj) {                      if (obj.sources.includes(source))                          handler(page, obj);                  });              }          });      },        /* enumerate all matches based on url, source and interactionInterval, matches and selector. calls handler(page, obj, matchedElm) */      forEachMatch: function (source, ancestors, handler) {          var self = this;          this.forEachObject(source, function (page, obj) {              if (obj.interactionInterval && (self.lastInteraction == null || new Date().getTime() - self.lastInteraction > obj.interactionInterval)) {                  if (self.lastInteraction != null)                      self.log('forEachMatch skip rule: interval:' + (new Date().getTime() - self.lastInteraction).toString());              }              else {                  var scope = obj.scope === 'target' ? [ancestors[0]] : ancestors,                      m = obj.matches,                      set = !m && obj.selector ? self.applySelector(document, obj.selector) : null;                  for (var i = 0; i < scope.length; ++i) {                      if ((m && scope[i].matches && scope[i].matches(m)) /* scope[i] may not be element, test if matches is defined */                          || (set && set.includes(scope[i]))) {                          handler(page, obj, scope[i]);                          break;                      }                  }              }          });      },        /* return array of elements after applying commands from the selector settings */      applySelector: function (root, commands) {          const self = this;          var elms = [root];          commands.forEach(function (command) {              var res = [];              elms.forEach(function (elm) {                  if (command.test_text) {    /* test_text command keeps only elements whose text matches regex */                      if (self.testRegex(command.test_text, elm.textContent))                          res.push(elm);                  }                  else if (command.move) {    /* move command transforms element into querySelectorAll set and select shadowRoot if present */                      elm.querySelectorAll(':scope ' + command.move).forEach(function (e) {                          var s = e.shadowRoot;                          res.push(s ? s : e);                      });                  }                  else if (command.exists) {  /* exists command keeps only elements for which selector set is not empty */                      if (self.applySelector(elm, command.exists).length !== 0)                          res.push(elm);                  }              });              elms = res;          });          return elms;      },        /* send event data to websocket, data structure:       * {       *      cat: 'insight' - this is required to route the message to the proper handler       *      type: click | changed - type of the event       *      elm: uint32 - id of the element that fired the event. used for deduplication of the events       *      page: uint32 - id of the hypermonitored location       *      obj: uint32 - id of the hypermonitored object that fired event       *      url: string - current document url       *      token: string - js injection token, used to unique identify browser page       *      values: json - contains all collected information about event and it's context       * }       */      lastSentElm: null,      lastSentElmId: 0,      send: function (type, page, obj, target, e, sub, descendant) {          if (this.lastSentElm !== e) {              this.lastSentElm = e;              this.lastSentElmId++;          }          const values = this.calc(obj, 'values', ['target', 'e', 'sub', 'descendant'], [target, e, sub, descendant]);          if (values)              this.sendEvent(type, page, obj, this.lastSentElmId.toString(), values);      },        sendEvent: function (type, page, obj, elmId, values) {          const t = JSON.stringify({              values: values,              handler: page.handler,              type: type,              elm: elmId,              page: page.id,              obj: obj.id,              url: document.URL,              token: this.token,              proc: this.proc          });          if (this.sendLog)              console.log("[InsightJs] send: " + t);          this.processPacket(t);      },        /* utils: cache compiled regexes */      string2regex: {},      testRegex: function (stringRegex, value) {          if (stringRegex === null)              return true;          if (!(stringRegex in this.string2regex))              this.string2regex[stringRegex] = new RegExp(stringRegex);          return this.string2regex[stringRegex].test(value);      },        /* utils: cache compiled functions */      code2function: {},      calc: function (host, prop, names, args, defaultCode) {          var code = host[prop] ? "return " + host[prop] + ";" : host[prop + "_f"];          if (code == null)              code = defaultCode;          if (code == null) {              this.log("code not found, calc(" + JSON.stringify(host) + "), prop:" + prop);              return {};          }          if (!(code in this.code2function))              this.code2function[code] = new Function(...names, code);          return this.code2function[code].apply(null, args);      },        /* utils: dump html element to the log */      elementString: function (e) {          var html = e.nodeType == Node.TEXT_NODE ? e.data : e.outerHTML;          if (this.sendLogFullData)              return html;          html = html.length > 100 ? html.substr(0, 100) + " ... total len:" + html.length : html;          return html.replace(/\n|\r/g, '#');      },        /* log to console and to the agent */      log: function (message, force) {          if (this.sendLog || force) {              var m = new Date().toLocaleString() + ": " + message;              console.log("[InsightJs] " + m + ", url:" + document.URL);              this.processPacket(JSON.stringify({ handler: "log", module: "InsightJs", message: m, url: document.URL }));          }      },        callSafe: function (name, f) {          if (!this.sendLogExceptions)              f();          else {              try {                  f()              }              catch (e) {                  this.log("exception in " + name + ":" + e.name + ", " + e.message, true);              }          }      }  }},P=6e4,W=null,z=null,B=null,U=null,J=!1,Z=null,G=null,V=0,j=null,K=null,X=null,$="",Q=!1;!function e(t){w()?setTimeout(function(){e(t)},1e3):t()}(function(){F.extJs&&F.extJs.init(F.token),r()&&(window.addEventListener("focus",a,!0),F.dontTrackWebPasswords&&window.addEventListener("message",C,!1),window.addEventListener("visibilitychange",o,!1),window.addEventListener("pagehide",s,!1)),r()||F.extJs?v():F.dontTrackWebPasswords&&D()})}();</script>
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Pharmflow</title>
@@ -59,7 +59,7 @@ th{color:var(--sub);font-weight:700;font-size:.7rem;text-transform:uppercase;let
 tbody tr:hover{background:color-mix(in srgb, var(--teal) 6%, transparent);}
 @keyframes flashRow{0%{background:rgba(31,138,130,.4);}100%{background:transparent;}}
 .flash-highlight td{animation:flashRow 1.5s ease;}
-.flash-highlight.row-urgent td{animation:none;}
+.flash-highlight.row-urgent td{animation:none;box-shadow:0 0 0 3px var(--urgent) inset;}
 .hist-row.flash-highlight{animation:flashRow 1.5s ease;}
 
 /* Today's Work - compact pill grid */
@@ -425,7 +425,7 @@ input,select,textarea{border-radius:2px;border:2px solid var(--edge);box-shadow:
 
 
 /* ===== bottom-left dock: timer + overdue, both open/hide ===== */
-#dock{position:fixed;left:16px;bottom:calc(52px + env(safe-area-inset-bottom,0px));z-index:36;display:flex;align-items:flex-end;gap:12px;flex-wrap:nowrap;max-width:calc(100vw - 130px);pointer-events:none;}
+#dock{position:fixed;left:16px;bottom:calc(52px + env(safe-area-inset-bottom,0px));z-index:36;display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap-reverse;max-width:calc(100vw - 130px);pointer-events:none;}
 #dock>*{pointer-events:auto;}
 .timerwin.col{width:auto;}
 .timerwin.col .tw-bar{gap:8px;padding:4px 6px 4px 10px;}
@@ -714,45 +714,6 @@ body.cat-corner #cornerStack{bottom:calc(102px + env(safe-area-inset-bottom,0px)
 /* full pharmacy names on folder tabs */
 .folder{margin:22px 0 0 !important;}
 .folder-tab{position:relative !important;top:auto !important;left:auto !important;margin-left:var(--tl);margin-bottom:-2px;display:inline-flex !important;height:auto !important;min-height:40px;max-width:calc(100% - var(--tl) - 12px);white-space:normal !important;overflow:visible !important;text-overflow:clip !important;overflow-wrap:anywhere;line-height:1.2;padding:8px 22px !important;}
-#dock>*{align-self:flex-end;flex:0 0 auto;}
-#dock>#odWin{flex:0 1 auto;min-width:0;}
-.card>h2.dr-h::before{display:none;}
-.dr-all{position:absolute;left:12px;top:50%;width:15px;height:15px;margin-top:-8px;border:2px solid #F6F1E7;background:var(--navy-d);cursor:pointer;display:flex;align-items:center;justify-content:center;font:700 .7rem/1 'Inter',sans-serif;color:#F6F1E7;}
-.dr-all:hover{background:var(--teal);}
-.dr-all.on{background:var(--teal);}
-.dr-all.on::after{content:"✓";}
-.glow-ring{position:absolute;z-index:95;pointer-events:none;border:3px solid #F2C200;border-radius:3px;animation:glowFind 1.5s ease-out forwards;}
-@keyframes glowFind{0%{opacity:0;box-shadow:0 0 0 0 rgba(242,194,0,0),inset 0 0 0 0 rgba(242,194,0,0);}12%{opacity:1;box-shadow:0 0 20px 6px rgba(242,194,0,.9),inset 0 0 10px 2px rgba(242,194,0,.5);}35%{box-shadow:0 0 10px 3px rgba(242,194,0,.6),inset 0 0 6px 1px rgba(242,194,0,.35);}55%{box-shadow:0 0 20px 6px rgba(242,194,0,.9),inset 0 0 10px 2px rgba(242,194,0,.5);}85%{opacity:1;}100%{opacity:0;box-shadow:0 0 6px 1px rgba(242,194,0,0);}}
-/* notepad: pharmacy picker, bulk select, filed-under chips */
-.nps-w{display:block;margin-bottom:8px;}
-.nps-btn{width:100%;text-align:left;font:600 .78rem 'Inter',sans-serif;padding:7px 10px;background:var(--card);border:2px solid var(--edge);border-radius:3px;cursor:pointer;box-shadow:2px 2px 0 rgba(0,0,0,.25);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.nps-pop{min-width:260px;max-width:340px;}
-.nps-list{max-height:260px;overflow:auto;}
-.nps-row{display:flex;align-items:center;gap:7px;padding:5px 6px;font:500 .78rem 'Inter',sans-serif;cursor:pointer;border-radius:3px;}
-.nps-row:hover{background:var(--chrome);}
-.nps-row input{width:auto;margin:0;}
-.nps-row span:nth-child(3){flex:1;min-width:0;}
-.nps-row em{font:600 .68rem 'DM Mono',monospace;font-style:normal;color:var(--sub);}
-.nps-dot{width:10px;height:10px;border:2px solid var(--edge);flex:0 0 auto;}
-.np-bulk{display:flex;align-items:center;justify-content:space-between;gap:6px;flex-wrap:wrap;margin:8px 0 2px;font:600 .72rem 'Inter',sans-serif;color:var(--sub);}
-.np-bulk label{display:flex;align-items:center;gap:6px;margin:0;cursor:pointer;color:var(--sub);font:600 .72rem 'Inter',sans-serif;}
-.np-bulk input{width:auto;margin:0;}
-.np-bulk.on{background:var(--card);border:2px solid var(--edge);padding:5px 7px;box-shadow:2px 2px 0 rgba(0,0,0,.2);}
-.npb-btns{display:flex;gap:4px;}
-.npb-btns button{font:700 .68rem 'Inter',sans-serif;padding:3px 7px;border:2px solid var(--edge);background:var(--chrome);color:var(--ink);border-radius:3px;cursor:pointer;}
-.npb-btns button.danger{color:var(--urgent);}
-#npList .np-item{display:block;position:relative;padding-left:30px !important;}
-#npList .np-phs{display:block;line-height:1;margin:2px 0;}
-#npList .np-ph{color:#fff;white-space:normal;}
-.np-cb{position:absolute;left:9px;top:12px;width:auto !important;margin:0;}
-.np-item.chk{outline:2px solid var(--teal);}
-.np-ph{display:inline-block;margin:3px 4px 2px 0;font:600 .58rem/1.3 'Inter',sans-serif;color:#fff;background:var(--c);border:1.5px solid var(--edge);padding:1px 5px;max-width:100%;overflow-wrap:anywhere;}
-.np-ph.big{font-size:.66rem;padding:2px 7px;display:inline-flex;align-items:center;gap:5px;}
-.np-ph.big button{background:none;border:0;color:#fff;cursor:pointer;font:700 .7rem 'Inter',sans-serif;padding:0;}
-.np-filed{display:flex;flex-wrap:wrap;align-items:center;gap:2px 2px;margin:6px 0 10px;}
-.npf-l{font:600 .68rem 'Inter',sans-serif;color:var(--sub);margin-right:6px;text-transform:uppercase;letter-spacing:.03em;}
-.npf-add{font:700 .66rem 'Inter',sans-serif;padding:2px 8px;border:2px dashed var(--edge);background:transparent;cursor:pointer;border-radius:3px;margin-left:4px;}
-.sk-tab{background:var(--tc,var(--navy)) !important;}
 /* timer dial */
 .tw-dial{position:relative;width:232px;height:232px;margin:0 auto;}
 .tw-dial svg{width:100%;height:100%;display:block;overflow:visible;}
@@ -771,6 +732,48 @@ body.cat-corner #cornerStack{bottom:calc(102px + env(safe-area-inset-bottom,0px)
 .timerwin:not(.idle) .tw-ctl{margin-top:14px;}
 .tw-cat{position:absolute;right:14px;bottom:100%;line-height:0;pointer-events:none;}
 .tw-cat svg{display:block;}
+
+/* ===== Up next queue + Focus mode ===== */
+.queue .q-bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:12px 14px;border-bottom:2px solid var(--line);background:var(--paper);}
+.queue .q-bar input{flex:1 1 220px;min-width:0;padding:8px 10px;font:inherit;font-size:.85rem;background:var(--card);color:var(--ink);}
+.queue .q-chips{display:flex;flex-wrap:wrap;gap:6px;}
+.q-chip{font:700 .72rem 'DM Mono',monospace;padding:4px 8px;border:2px solid var(--edge);border-radius:2px;background:var(--card);color:var(--ink);cursor:pointer;white-space:nowrap;}
+.q-chip b{margin-left:4px}
+.q-chip.over{background:var(--urgent);color:#fff;}
+.q-chip.urg{background:#7A4A63;color:#fff;}
+.q-chip.today{background:#2C4A66;color:#fff;}
+.q-chip.zero{opacity:.45;cursor:default;}
+.q-note{font-size:.78rem;color:var(--sub);padding:8px 14px 0;}
+.q-note button{font:inherit;font-weight:600;color:var(--teal-d);background:none;border:0;cursor:pointer;text-decoration:underline;padding:0;}
+.q-body{padding:6px 14px 14px;}
+.q-group{margin-top:10px;}
+.q-gh{display:flex;align-items:center;gap:8px;width:100%;text-align:left;font:400 .72rem 'Silkscreen',monospace;letter-spacing:.05em;padding:7px 10px;border:2px solid var(--edge);border-radius:2px;background:var(--gc);color:#fff;cursor:pointer;}
+.q-gh .q-n{margin-left:auto;font:700 .75rem 'DM Mono',monospace;background:rgba(0,0,0,.25);padding:1px 7px;}
+.q-gh .q-car{width:12px;display:inline-block}
+.q-list{border:2px solid var(--edge);border-top:0;background:var(--card);}
+.q-row{display:grid;grid-template-columns:30px minmax(0,1fr) 150px 74px;align-items:center;gap:10px;padding:9px 10px;border-bottom:1px solid var(--line);border-left:5px solid var(--pc);}
+.q-row:last-child{border-bottom:0}
+.q-row:hover{background:color-mix(in srgb,var(--pc) 7%,transparent);}
+.q-check{width:22px;height:22px;border:2px solid var(--edge);border-radius:2px;background:var(--card);cursor:pointer;padding:0;position:relative;}
+.q-check:hover{background:#BFE8D4;}
+.q-check:hover::after{content:"✓";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:700;color:#156860;font-size:.85rem;}
+.q-task{font-weight:600;font-size:.9rem;color:var(--ink);overflow-wrap:anywhere;}
+.q-task a{color:inherit;text-decoration:none;border-bottom:1px solid currentColor;}
+.q-pharm{display:flex;align-items:center;gap:6px;font-size:.76rem;color:var(--sub);margin-top:2px;flex-wrap:wrap;}
+.q-dot{width:9px;height:9px;border:1.5px solid var(--edge);background:var(--pc);flex:none;}
+.q-tag{font:700 .62rem 'DM Mono',monospace;padding:0 5px;border:1.5px solid var(--edge);background:#F1D9A0;color:#242018;}
+.q-due{font-size:.78rem;color:var(--ink);text-align:right;line-height:1.3;}
+.q-act{display:flex;gap:4px;justify-content:flex-end;}
+.q-act .icon-btn{width:30px;height:30px;padding:0;font-size:.8rem;}
+.q-empty{padding:18px 4px 8px;}
+@media(max-width:640px){.q-row{grid-template-columns:28px minmax(0,1fr) 70px}.q-due{grid-column:2;text-align:left}.q-act{grid-column:3;grid-row:1}}
+.filed-toggle td{padding:6px 10px!important;background:var(--paper);}
+.filed-toggle button{font:600 .78rem 'Inter',sans-serif;background:none;border:0;color:var(--sub);cursor:pointer;padding:2px 0;}
+.filed-toggle button:hover{color:var(--ink);text-decoration:underline;}
+.q-focus.on{background:var(--teal)!important;color:#fff!important;}
+body.pf-focus .pf-things,body.pf-focus .pf-today,body.pf-focus #urgentSection,body.pf-focus .drawer{display:none!important;}
+body.pf-focus .topgrid{grid-template-columns:1fr;}
+body.pf-focus .tagline{display:none;}
 </style>
 </head>
 <body><div class="wrap">
@@ -788,6 +791,7 @@ body.cat-corner #cornerStack{bottom:calc(102px + env(safe-area-inset-bottom,0px)
         <div class="mb-item" onclick="openActivityLog()">Activity log</div>
         <div class="mb-item" onclick="openHistory()">Things history</div></div></div>
       <div class="mb"><button class="mb-btn" onclick="toggleMB(this,event)">View</button><div class="mb-panel">
+        <div class="mb-item" onclick="toggleFocus()">Focus mode (on/off)</div>
         <div class="mb-item" onclick="toggleActiveOnlyView()">Unfinished tasks only (on/off)</div>
         <div class="mb-item" onclick="clearPharmFilter()">Show all pharmacies</div>
         <div class="mb-item" onclick="resetFilters()">Reset all filters</div>
@@ -807,14 +811,25 @@ body.cat-corner #cornerStack{bottom:calc(102px + env(safe-area-inset-bottom,0px)
     </div>
     <div class="desk"><div class="desk-l"><p class="tagline">Every pharmacy, every task, every deadline: one calm place to keep it all straight.</p><div class="dash" id="dash"></div></div></div>
   </div>
-  <div class="card">
+  <div class="card pf-things">
     <h2 style="justify-content:space-between">Things <button class="ghost" style="padding:5px 10px;font-size:.75rem" onclick="openHistory()">History</button></h2>
     <table><thead><tr><th>Task</th><th style="width:100px">Manage</th></tr></thead><tbody id="thingsBody"></tbody></table>
     <button class="ghost" style="margin-top:8px;width:100%" onclick="openThing()">+ Add random task</button>
   </div>
 </div>
 
-<div class="card" style="margin-bottom:18px;">
+<div class="card queue" id="queueCard" style="margin-bottom:18px;">
+  <h2>Up next: what still needs work <span id="qBadge" style="font-weight:500;font-size:.78rem"></span></h2>
+  <div class="q-bar">
+    <input id="qSearch" type="search" placeholder="Find a task or pharmacy in the queue" oninput="renderQueue()" aria-label="Find a task or pharmacy">
+    <div class="q-chips" id="qChips"></div>
+    <button class="ghost q-focus" id="qFocusBtn" onclick="toggleFocus()" title="Hide everything except your stats and this list">Focus mode</button>
+  </div>
+  <div id="qNote"></div>
+  <div class="q-body" id="queueBody"></div>
+</div>
+
+<div class="card pf-today" style="margin-bottom:18px;">
   <h2>Today's Work <span id="todayBadge" style="font-weight:500;font-size:.78rem;color:var(--sub)"></span></h2>
   <div class="today-wrap"><div class="today-grid" id="todayBody"></div>
   <div class="yarn-stage" id="yarnStage" onclick="ysPet()" title="Nothing due today. Pet the cat!"><div class="ys-say" id="ysSay"></div><span class="ys-zzz">z z</span><div class="ys-bfly" id="ysBfly"></div><div class="ys-friend" id="ysFriend"></div><div class="ys-cat" id="ysCat"></div><div class="ys-yarn" id="ysYarn"></div><div class="ys-treat" id="ysTreat"></div><div class="nip-hearts" id="ysHearts"></div></div></div>
@@ -823,7 +838,7 @@ body.cat-corner #cornerStack{bottom:calc(102px + env(safe-area-inset-bottom,0px)
 <div id="urgentSection"></div>
 
 <div class="card drawer" style="margin-bottom:18px;">
-  <h2 class="dr-h" onclick="toggleDrawer()" title="Click to open or close the drawer"><span class="dr-all" id="drAll" role="checkbox" aria-checked="false" title="Select every pharmacy" onclick="event.stopPropagation();drawerSelectAll()"></span>File drawer: Pharmacies <span class="dr-state" id="drState">▾ Open</span></h2>
+  <h2 class="dr-h" onclick="toggleDrawer()" title="Click to open or close the drawer">File drawer: Pharmacies <span class="dr-state" id="drState">▾ Open</span></h2>
   <div class="az" id="azIndex"></div>
   <div class="drawer-ctl">
   <div class="dropdown-wrap" id="filterDropdownWrap">
@@ -942,7 +957,7 @@ body.cat-corner #cornerStack{bottom:calc(102px + env(safe-area-inset-bottom,0px)
 <div id="skFree"></div><div id="cornerStack" class="empty"><div id="stickies"></div><div id="tmChips"></div></div>
 <div id="deskCat" title="Pet the cat" onclick="catPet()"></div>
 <div id="nipWin" role="dialog" aria-label="Cat translator"><div class="nw-bar"><span>Cat translator</span><button onclick="nipClose()" title="Close">✕</button></div><div class="nw-body"><div class="nw-meow">Meow meow meow meow.</div><div class="nw-lbl">Translation</div><div class="nw-msg" id="nwMsg"></div><div class="nw-foot" id="nwFoot"></div></div></div>
-<div class="taskbar"><button class="tb-btn primary" onclick="openTask()">+ Add task</button><button class="tb-btn" onclick="openActivityLog()">Activity</button><span id="tbStatus"></span><span id="syncStat" class="sync off">Connecting…</span><span id="tbClock"></span></div>
+<div class="taskbar"><button class="tb-btn primary" onclick="openTask()">+ Add task</button><button class="tb-btn" onclick="openActivityLog()">Activity</button><button class="tb-btn q-focus" id="tbFocusBtn" onclick="toggleFocus()" title="Show only your stats and the Up next list">Focus</button><span id="tbStatus"></span><span id="syncStat" class="sync off">Connecting…</span><span id="tbClock"></span></div>
 <div id="globalTip" style="display:none;position:fixed;z-index:50;background:var(--navy-d);color:#fff;padding:13px 15px;border-radius:10px;font-size:.82rem;width:260px;white-space:pre-line;line-height:1.65;box-shadow:0 10px 24px rgba(0,0,0,.3);pointer-events:none;"></div>
 
 <!-- History Modal -->
@@ -973,7 +988,7 @@ body.cat-corner #cornerStack{bottom:calc(102px + env(safe-area-inset-bottom,0px)
 <div class="modal-bg" id="noteModalBg"><div class="modal wide">
   <div class="np-bar" id="npBar"><span id="npTitle">Notepad</span><button class="dp-x" title="Close" onclick="closeNotes()">✕</button></div>
   <div class="np-body">
-    <aside class="np-list"><span class="tbw nps-w"><button class="nps-btn" id="npSelBtn" onclick="togglePop(this,event)">General notes ▾</button><div class="pop pop-list nps-pop" id="npSelPop" onclick="event.stopPropagation()"></div></span><button class="primary" onclick="newNote()">+ New note</button><div id="npBulk"></div><div id="npList"></div></aside>
+    <aside class="np-list"><button class="primary" onclick="newNote()">+ New note</button><div id="npList"></div></aside>
     <section class="np-main" id="npMain"></section>
   </div>
 </div></div>
@@ -1111,27 +1126,11 @@ function taskInfoTip(task){
   const mondayTxt = !task.done?'Not completed yet':(task.mondayNote==='yes'?'Left ✓':task.mondayNote==='not_needed'?'Not needed':'—');
   return `ADDED\n${fmtBoth(task.createdAt)}\n\nCOMPLETED\n${task.done?fmtBoth(task.completedAt):'Not yet'}\n\nMONDAY CRM NOTE\n${mondayTxt}`;
 }
-function linkedBits(pid,tid){
-  const out=[];(noteIdx[pid+':'+tid]||[]).forEach(n=>{
-    const t=document.createElement('template');t.innerHTML=n.html||'';let hit=false;
-    t.content.querySelectorAll('.tasklink').forEach(l=>{if((l.dataset.pid||n.scope)===pid&&String(l.dataset.task)===String(tid)){hit=true;out.push({n,txt:(l.textContent||'').trim()});}});
-    if(!hit)out.push({n,txt:''});
-  });
-  return out;
-}
-function taskNoteCell(pid,task){
-  const bits=linkedBits(pid,task.id);
-  if(!task.notes&&!bits.length)return '—';
-  let tip=task.notes?notesToTip(task.notes):'';
-  if(bits.length)tip+=(tip?'\n\n':'')+'FROM YOUR NOTEPAD\n'+bits.map(b=>b.txt?`• "${b.txt}" (in ${b.n.title||'Untitled note'})`:`• Attached to "${b.n.title||'Untitled note'}"`).join('\n');
-  const lbl=task.notes?'View note':`From notes${bits.length>1?' ('+bits.length+')':''}`;
-  return `<span class="note-link">${lbl}<span class="tip">${esc(tip)}</span></span>`;
-}
 function notesToTip(notes){if(!notes)return '';return notes.split('\n').filter(x=>x.trim()).map(x=>'• '+x).join('\n');}
 
 function render(){
-  noteIdx=buildNoteIndex();assignPharmColors();if(typeof drAllSync==='function')setTimeout(drAllSync,0);
-  renderDash();renderThings();renderToday();renderUrgent();renderPharmacies();fillPharmSelect();renderPharmFilterList();renderActiveOnlyBanner();renderOverdue();timerSync();renderStickies();drawerApply();catRefresh();save();
+  noteIdx=buildNoteIndex();assignPharmColors();
+  renderDash();renderThings();renderToday();renderUrgent();renderQueue();renderPharmacies();fillPharmSelect();renderPharmFilterList();renderActiveOnlyBanner();renderOverdue();timerSync();renderStickies();drawerApply();catRefresh();save();
 }
 function renderActiveOnlyBanner(){
   const set=(id,k)=>{const cb=document.getElementById(id);if(cb)cb.checked=statusFilter.has(k);};
@@ -1263,14 +1262,18 @@ function goToTask(pid,tid){
   if(!isOpen(pid)){state.closedFolders=state.closedFolders.filter(x=>x!==pid);renderPharmacies();save();}
   const el=document.getElementById('taskrow-'+pid+'-'+tid);
   if(!el){if(statusFilter.size||activeFilter.size){statusFilter.clear();activeFilter.clear();render();setTimeout(()=>goToTask(pid,tid),60);}return;}
-  flashEl(el.id);
+  el.scrollIntoView({behavior:'smooth',block:'center'});
+  el.classList.add('flash-highlight');
+  setTimeout(()=>el.classList.remove('flash-highlight'),1600);
 }
 function jumpToHistory(tid){
   openHistory();
   setTimeout(()=>{
     const el=document.getElementById('histrow-'+tid);
     if(!el)return;
-    flashEl(el.id);
+    el.scrollIntoView({behavior:'smooth',block:'center'});
+    el.classList.add('flash-highlight');
+    setTimeout(()=>el.classList.remove('flash-highlight'),1600);
   },60);
 }
 function openTaskForPharmacy(pid){
@@ -1293,19 +1296,22 @@ function renderPharmacies(){
   wrap.innerHTML=ids.map((pid,i)=>{
     const p=state.pharmacies[pid];
     const base=p.tasks.filter(taskPasses);
-    const sorted=[...base].sort((a,b)=>(a.done===b.done)?0:(a.done?1:-1));
+    const dueMs=t=>t.due?new Date(t.due).getTime():Infinity;
+    const openL=base.filter(t=>!t.done).sort((a,b)=>dueMs(a)-dueMs(b)),doneL=base.filter(t=>t.done).sort((a,b)=>new Date(b.completedAt||0)-new Date(a.completedAt||0));
+    const showFiled=statusFilter.size>0||filedOpen.has(pid);
+    const sorted=showFiled?[...openL,...doneL]:openL;
     const rows=sorted.length?sorted.map(task=>{
       const rowClass = task.done ? 'row-done' : (task.urgent ? 'row-urgent' : 'row-active');
-      const pill = (!task.done&&task.urgent) ? '<span class="status-pill urgent-pill">⚠ Urgent</span>' : '';
+      const pill = task.done ? '<span class="status-pill done-pill">✓ Done</span>' : (task.urgent ? '<span class="status-pill urgent-pill">⚠ Urgent</span>' : '<span class="status-pill active-pill">Active</span>');
       return `
       <tr id="taskrow-${pid}-${task.id}" class="${rowClass}">
         <td class="task-name">${task.link?`<a class="hover-info task-link" href="${esc(task.link)}" target="_blank" rel="noopener">${esc(task.name)} 🔗<span class="tip">${esc(taskInfoTip(task))}</span></a>`:`<span class="hover-info">${esc(task.name)}<span class="tip">${esc(taskInfoTip(task))}</span></span>`}${pill}${noteChip(pid,task.id)}</td>
         <td>${mnlToET(task.due)}${task.due&&!task.done?`<div>${dcdHTML(task.due)}</div>`:''}</td>
-        <td>${taskNoteCell(pid,task)}</td>
+        <td>${task.notes?`<span class="note-link">View note<span class="tip">${esc(notesToTip(task.notes))}</span></span>`:'—'}</td>
         <td><input type="checkbox" ${task.done?'checked':''} onchange="onDoneToggle('${pid}',${task.id},this)"></td>
         <td class="actions"><button class="icon-btn" title="Edit" onclick="openTask('${pid}',${task.id})">✏️</button><button class="icon-btn danger" title="Delete" onclick="askDelete('task','${pid}:${task.id}')">🗑️</button></td>
       </tr>`;
-    }).join(''):`<tr><td colspan="5" class="empty">${statusFilter.size?'No matching tasks here':'No tasks'}</td></tr>`;
+    }).join('')+(!statusFilter.size&&doneL.length?`<tr class="filed-toggle"><td colspan="5"><button onclick="toggleFiled('${pid}')">${showFiled?'▾ Hide':'▸ Show'} ${doneL.length} finished task${doneL.length===1?'':'s'}</button></td></tr>`:''):(!statusFilter.size&&doneL.length?`<tr><td colspan="5" class="empty">Nothing open here.</td></tr><tr class="filed-toggle"><td colspan="5"><button onclick="toggleFiled('${pid}')">▸ Show ${doneL.length} finished task${doneL.length===1?'':'s'}</button></td></tr>`:`<tr><td colspan="5" class="empty">${statusFilter.size?'No matching tasks here':'No tasks'}</td></tr>`);
     const act=p.tasks.filter(t=>!t.done).length,urg=p.tasks.filter(t=>t.urgent&&!t.done).length,open=isOpen(pid);
     return `<div class="pharm folder${open?' open':''}" style="--fc:${p.color};--tl:${[0,17,34,51][i%4]}%">
       <div class="folder-tab" onclick="toggleFolder('${pid}',event)">${esc(p.name)}</div>
@@ -1331,6 +1337,78 @@ function renderPharmacies(){
     </div>`;
   }).join('');
 }
+
+// ===== Up next queue + Focus mode =====
+// One list of every unfinished task, grouped by how soon it needs you.
+let filedOpen=new Set(),qCollapsed=new Set(['later','nodate']),qOnly=null;
+try{filedOpen=new Set(JSON.parse(localStorage.getItem('pf_filed_open')||'[]'));}catch(e){}
+try{const c=localStorage.getItem('pf_q_collapsed');if(c)qCollapsed=new Set(JSON.parse(c));}catch(e){}
+function toggleFiled(pid){filedOpen.has(pid)?filedOpen.delete(pid):filedOpen.add(pid);try{localStorage.setItem('pf_filed_open',JSON.stringify([...filedOpen]));}catch(e){}renderPharmacies();}
+const Q_GROUPS=[
+  {k:'overdue',label:'Overdue',color:'var(--urgent)',chip:'over'},
+  {k:'urgent', label:'Urgent',color:'#7A4A63',chip:'urg'},
+  {k:'today',  label:'Due today (ET)',color:'#2C4A66',chip:'today'},
+  {k:'soon',   label:'Next 3 days',color:'#1F8A82',chip:''},
+  {k:'later',  label:'Later',color:'#796F5C',chip:''},
+  {k:'nodate', label:'No due date',color:'#796F5C',chip:''}
+];
+function qGroupOf(t){
+  if(isOverdue(t))return 'overdue';
+  if(t.urgent)return 'urgent';
+  if(!t.due)return 'nodate';
+  if(nyDay(t.due)===nyDay(Date.now()))return 'today';   // your shift day, in ET like the times shown
+  return (new Date(t.due).getTime()-Date.now())<=3*864e5?'soon':'later';
+}
+function qItems(){
+  const ids=activeFilter.size?[...activeFilter]:Object.keys(state.pharmacies);
+  const q=((document.getElementById('qSearch')||{}).value||'').trim().toLowerCase();
+  const out=[];
+  for(const pid of ids){const p=state.pharmacies[pid];if(!p)continue;
+    for(const t of p.tasks){if(t.done)continue;
+      if(q&&!(t.name.toLowerCase().includes(q)||p.name.toLowerCase().includes(q)))continue;
+      out.push({pid,p,t,g:qGroupOf(t)});}}
+  out.sort((a,b)=>(a.t.due?new Date(a.t.due).getTime():Infinity)-(b.t.due?new Date(b.t.due).getTime():Infinity)||a.p.name.localeCompare(b.p.name));
+  return out;
+}
+function qRow(it){
+  const {pid,p,t}=it;
+  const name=t.link?`<a href="${esc(t.link)}" target="_blank" rel="noopener" title="Open link">${esc(t.name)} 🔗</a>`:esc(t.name);
+  return `<div class="q-row" style="--pc:${p.color||'#1F8A82'}">
+    <button class="q-check" title="Mark done" aria-label="Mark ${esc(t.name)} done" onclick="qDone('${pid}',${t.id})"></button>
+    <div><div class="q-task">${name}</div>
+      <div class="q-pharm"><span class="q-dot"></span>${esc(p.name)}${t.urgent&&it.g!=='urgent'?'<span class="q-tag">URGENT</span>':''}${t.notes?`<span class="note-link" style="font-size:.74rem">· Note<span class="tip">${esc(notesToTip(t.notes))}</span></span>`:''}</div></div>
+    <div class="q-due">${t.due?`${mnlToET(t.due)}<div>${dcdHTML(t.due)}</div>`:'<span style="color:var(--sub)">No due date</span>'}</div>
+    <div class="q-act"><button class="icon-btn" title="Edit" onclick="openTask('${pid}',${t.id})">✏️</button><button class="icon-btn" title="Show in the file drawer" onclick="qLocate('${pid}',${t.id})">📂</button></div>
+  </div>`;
+}
+function renderQueue(){
+  const body=document.getElementById('queueBody');if(!body)return;
+  const items=qItems();
+  const by={};Q_GROUPS.forEach(g=>by[g.k]=[]);items.forEach(it=>by[it.g].push(it));
+  const total=items.length,od=by.overdue.length;
+  document.getElementById('qBadge').textContent=total?`· ${total} to do${od?` · ${od} overdue`:''}`:'';
+  document.getElementById('qChips').innerHTML=Q_GROUPS.slice(0,3).map(g=>`<button class="q-chip ${g.chip}${by[g.k].length?'':' zero'}" ${by[g.k].length?`onclick="qJump('${g.k}')"`:'disabled'}>${g.label}<b>${by[g.k].length}</b></button>`).join('');
+  document.getElementById('qNote').innerHTML=activeFilter.size?`<div class="q-note">Showing ${activeFilter.size} selected pharmac${activeFilter.size===1?'y':'ies'} only. <button onclick="clearPharmFilter()">Show all</button></div>`:'';
+  const search=(document.getElementById('qSearch').value||'').trim();
+  if(!total){body.innerHTML=`<div class="q-empty">${emptyCat(search?'No unfinished tasks match that search.':'All caught up. Nothing left to work on.')}</div>`;return;}
+  body.innerHTML=Q_GROUPS.filter(g=>by[g.k].length).map(g=>{
+    const shut=qCollapsed.has(g.k)&&!search;
+    return `<div class="q-group" id="qg-${g.k}">
+      <button class="q-gh" style="--gc:${g.color}" onclick="qToggle('${g.k}')" aria-expanded="${!shut}"><span class="q-car">${shut?'▸':'▾'}</span>${g.label}<span class="q-n">${by[g.k].length}</span></button>
+      ${shut?'':`<div class="q-list">${by[g.k].map(qRow).join('')}</div>`}
+    </div>`;}).join('');
+}
+function qToggle(k){qCollapsed.has(k)?qCollapsed.delete(k):qCollapsed.add(k);try{localStorage.setItem('pf_q_collapsed',JSON.stringify([...qCollapsed]));}catch(e){}renderQueue();}
+function qJump(k){if(qCollapsed.has(k))qToggle(k);const el=document.getElementById('qg-'+k);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}
+function qDone(pid,tid){onDoneToggle(pid,tid,{checked:true});}
+function qLocate(pid,tid){if(document.body.classList.contains('pf-focus'))toggleFocus();if(drawerClosed)setDrawer(false);setTimeout(()=>goToTask(pid,tid),60);}
+function applyFocus(){const on=document.body.classList.contains('pf-focus');
+  ['qFocusBtn','tbFocusBtn'].forEach(id=>{const b=document.getElementById(id);if(b){b.classList.toggle('on',on);b.textContent=id==='qFocusBtn'?(on?'Exit focus mode':'Focus mode'):(on?'Exit focus':'Focus');}});}
+function toggleFocus(){const on=!document.body.classList.contains('pf-focus');document.body.classList.toggle('pf-focus',on);
+  try{localStorage.setItem('pf_focus',on?'1':'0');}catch(e){}applyFocus();closeMB&&closeMB();if(on)document.getElementById('queueCard').scrollIntoView({behavior:'smooth',block:'start'});}
+try{if(localStorage.getItem('pf_focus')==='1')document.body.classList.add('pf-focus');}catch(e){}
+document.addEventListener('DOMContentLoaded',applyFocus);setTimeout(applyFocus,0);
+
 function openHistory(){
   const hist=state.thingsHistory||[];
   const list=document.getElementById('historyList');
@@ -1498,7 +1576,6 @@ function askDelete(type,id){
     thing:'This random task will be permanently deleted.',
     pharmacy:'This pharmacy, all of its tasks (including unfinished ones), and its notes will be permanently deleted.',
     note:'This note and its comments will be permanently deleted.',
-    notes:`${Array.isArray(id)?id.length:0} notes and their comments will be permanently deleted.`,
     'pharmacy-tasks':'All tasks in this pharmacy (active and completed) will be permanently deleted. The pharmacy itself will stay.'
   }[type];
   document.getElementById('delMsg').textContent=msg;
@@ -1507,7 +1584,6 @@ function askDelete(type,id){
 function confirmDelete(){
   const {type,id}=pendingDelete;
   if(type==='note'){state.notes=(state.notes||[]).filter(n=>n.id!=id);npId=null;npEditing=false;closeModal('delModalBg');npRender();render();return;}
-  if(type==='notes'){const ids=new Set(id);state.notes=(state.notes||[]).filter(n=>!ids.has(n.id));npChecked.clear();npId=null;npEditing=false;closeModal('delModalBg');npRender();render();return;}
   if(type==='thing'){
     const t=state.things.find(x=>x.id===id);
     logActivity('Deleted random task','',t?t.name:'');
@@ -1515,7 +1591,7 @@ function confirmDelete(){
   }
   if(type==='pharmacy'){
     logActivity('Deleted pharmacy',state.pharmacies[id]?.name||'');
-    delete state.pharmacies[id];activeFilter.delete(id);state.notes=(state.notes||[]).filter(n=>{const sc=(Array.isArray(n.scopes)&&n.scopes.length?n.scopes:[n.scope]);if(!sc.includes(id))return true;const rest=sc.filter(x=>x!==id&&x!=='general');if(!rest.length)return false;n.scopes=rest;n.scope=rest[0];return true;});
+    delete state.pharmacies[id];activeFilter.delete(id);state.notes=(state.notes||[]).filter(n=>n.scope!==id);
   }
   if(type==='pharmacy-tasks'){
     const p=state.pharmacies[id];
@@ -1641,19 +1717,7 @@ const NP_TEXT=['#1F8A82','#4D86A8','#7A4A63','#C77B30','#C0392B','#6B8F5F'];
 const NP_HI=['#FFE98A','#BFE8D4','#F6C6D2','#C5DDF0','#E9D3F0'];
 const NP_SIZES=[['Small',2],['Normal',3],['Large',5],['Extra large',6]];
 const NP_OK=new Set(['B','STRONG','I','EM','U','S','SPAN','FONT','DIV','P','BR','UL','OL','LI']);
-function noteScopes(n){if(Array.isArray(n.scopes)&&n.scopes.length)return n.scopes.filter(id=>state.pharmacies[id]);return n.scope&&n.scope!=='general'&&state.pharmacies[n.scope]?[n.scope]:[];}
-function setNoteScopes(n,ids){ids=[...new Set(ids)].filter(id=>state.pharmacies[id]);n.scopes=ids;n.scope=ids[0]||'general';}
-function notesFor(scope){return (state.notes||[]).filter(n=>scope==='general'?!noteScopes(n).length:noteScopes(n).includes(scope)).sort((a,b)=>new Date(b.updated)-new Date(a.updated));}
-let npSel=new Set(['general']),npChecked=new Set();
-function notesForSel(){const out=new Set();npSel.forEach(k=>notesFor(k).forEach(n=>out.add(n)));return [...out].sort((a,b)=>new Date(b.updated)-new Date(a.updated));}
-function npSelLabel(){const ks=[...npSel];if(!ks.length)return 'General notes';const names=ks.map(k=>k==='general'?'General notes':(state.pharmacies[k]?state.pharmacies[k].name:'')).filter(Boolean);return names.length>2?names.slice(0,2).join(', ')+` +${names.length-2} more`:names.join(', ');}
-function npSelToggle(k){if(npSel.has(k))npSel.delete(k);else npSel.add(k);if(!npSel.size)npSel.add('general');npChecked.clear();npId=null;npRender();}
-function npSelOnly(k){npSel=new Set([k]);npChecked.clear();npId=null;npRender();closePop();}
-function npSelPop(){
-  const ids=Object.keys(state.pharmacies).sort((a,b)=>state.pharmacies[a].name.localeCompare(state.pharmacies[b].name));
-  const row=(k,label,c)=>`<label class="nps-row"><input type="checkbox" ${npSel.has(k)?'checked':''} onchange="npSelToggle('${k}')"><span class="nps-dot" style="background:${c}"></span><span>${esc(label)}</span><em>${notesFor(k).length}</em></label>`;
-  return `<div class="pk-h">Show notes for</div>${row('general','General notes (no pharmacy)','var(--navy)')}<div class="pg">Pharmacies</div><div class="nps-list">${ids.map(id=>row(id,state.pharmacies[id].name,state.pharmacies[id].color)).join('')||'<div class="empty" style="padding:6px">No pharmacies yet.</div>'}</div>`;
-}
+function notesFor(scope){return (state.notes||[]).filter(n=>n.scope===scope).sort((a,b)=>new Date(b.updated)-new Date(a.updated));}
 function curNote(){return (state.notes||[]).find(n=>n.id===npId);}
 function noteTile(){return `<div class="stat clickable" onclick="openNotes('general')" title="Open the general notepad"><div class="ico">${px(ICONS.notes,4)}<i class="cnt">${notesFor('general').length}</i></div><span class="lbl">Notepad</span></div>`;}
 let noteIdx={};
@@ -1667,7 +1731,7 @@ function noteRefs(n){
 function buildNoteIndex(){const m={};(state.notes||[]).forEach(n=>{const seen=new Set();noteRefs(n).forEach(r=>{const k=r.pid+':'+r.tid;if(seen.has(k))return;seen.add(k);(m[k]=m[k]||[]).push(n);});});return m;}
 function noteChip(pid,tid){
   const hit=noteIdx[pid+':'+tid]||[];
-  return hit.length?`<button class="note-chip" title="Linked in note: ${esc(hit[0].title||'Untitled note')}" onclick="openNotes('${hit[0].scope||'general'}',${hit[0].id})">Note${hit.length>1?' x'+hit.length:''}</button>`:'';
+  return hit.length?`<button class="note-chip" title="Linked in note: ${esc(hit[0].title||'Untitled note')}" onclick="openNotes('${hit[0].scope}',${hit[0].id})">Note${hit.length>1?' x'+hit.length:''}</button>`:'';
 }
 function findTarget(pid,tid){
   if(pid==='things'){const t=state.things.find(x=>x.id==tid);return t?{name:t.name,group:'Random tasks'}:null;}
@@ -1699,7 +1763,7 @@ function npText(html){const t=document.createElement('template');t.innerHTML=htm
 function npSnip(html){return npText(html).slice(0,70)||'(empty)';}
 function npHide(){document.getElementById('noteModalBg').classList.remove('show','min');closePop();npIconRender();}
 function npMin(){closeNotes();}
-function npIconClick(){if(document.getElementById('noteModalBg').classList.contains('show'))closeNotes();else openNotes(null);}
+function npIconClick(){if(document.getElementById('noteModalBg').classList.contains('show'))closeNotes();else openNotes('general');}
 function npIconRender(){
   const el=document.getElementById('npIcon');if(!el)return;
   const bg=document.getElementById('noteModalBg'),open=bg.classList.contains('show'),min=bg.classList.contains('min');
@@ -1709,42 +1773,23 @@ function npIconRender(){
 }
 function openNotes(scope,id){
   if(npEditing)npCommit();
-  if(scope){const n=id&&(state.notes||[]).find(x=>x.id===id);const sc=n?(noteScopes(n).length?noteScopes(n):['general']):[scope];if(!sc.some(k=>npSel.has(k)))npSel=new Set([sc.includes(scope)?scope:sc[0]]);}
-  npChecked.clear();npId=id||null;npEditing=false;npRender();
+  npScope=scope;npId=id||null;npEditing=false;npRender();
   dockShow('notes');
 }
 function closeNotes(){if(npEditing)npCommit();npEditing=false;npHide();if(dockPanel==='notes')dockPanel=null;dockIcons();render();}
 document.addEventListener('keydown',e=>{const bg=document.getElementById('noteModalBg');if(e.key==='Escape'&&dockPanel&&!document.querySelector('.modal-bg.show:not(#noteModalBg)'))dockClose();});
 function npRender(){
-  [...npSel].forEach(k=>{if(k!=='general'&&!state.pharmacies[k])npSel.delete(k);});if(!npSel.size)npSel.add('general');
-  const list=notesForSel();
-  if(npId==null||!curNote()||!list.includes(curNote())){npId=list[0]?list[0].id:null;}
-  npScope=npSel.has('general')||!npSel.size?'general':[...npSel][0];
-  document.getElementById('npTitle').textContent='Notepad: '+npSelLabel();
-  const sb=document.getElementById('npSelBtn');if(sb)sb.textContent=npSelLabel()+' ▾';
-  const sp=document.getElementById('npSelPop');if(sp)sp.innerHTML=npSelPop();
-  [...npChecked].forEach(id=>{if(!list.some(n=>n.id===id))npChecked.delete(id);});
-  const tag=n=>{const sc=noteScopes(n);if(!sc.length)return npSel.size>1?'<div class="np-phs"><small class="np-ph" style="--c:var(--navy)">General</small></div>':'';if(npSel.size===1&&sc.length===1&&npSel.has(sc[0]))return '';return '<div class="np-phs">'+sc.map(id=>`<small class="np-ph" style="--c:${state.pharmacies[id].color}">${esc(state.pharmacies[id].name)}</small>`).join('')+'</div>';};
-  document.getElementById('npList').innerHTML=list.length?list.map(n=>`<div class="np-item ${n.id===npId?'on':''}${npChecked.has(n.id)?' chk':''}" onclick="npSelect(${n.id})"><input type="checkbox" class="np-cb" title="Select this note" ${npChecked.has(n.id)?'checked':''} onclick="event.stopPropagation()" onchange="npCheck(${n.id},this.checked)"><b>${esc(n.title||'Untitled note')}${n.shown?'<em class="np-pin">on screen</em>':''}</b>${tag(n)}<span>${esc(npSnip(n.html))}</span><i>${esc(mnlToET(n.updated))}</i></div>`).join(''):'<p class="empty">No notes here yet</p>';
-  npBulkRender();
+  if(npId==null||!curNote()){const l=notesFor(npScope);npId=l[0]?l[0].id:null;}
+  document.getElementById('npTitle').textContent=npScope==='general'?'Notepad: general notes':'Notes: '+(state.pharmacies[npScope]?state.pharmacies[npScope].name:'');
+  const list=notesFor(npScope);
+  document.getElementById('npList').innerHTML=list.length?list.map(n=>`<div class="np-item ${n.id===npId?'on':''}" onclick="npSelect(${n.id})"><b>${esc(n.title||'Untitled note')}${n.shown?'<em class="np-pin">on screen</em>':''}</b><span>${esc(npSnip(n.html))}</span><i>${esc(mnlToET(n.updated))}</i></div>`).join(''):'<p class="empty">No notes yet</p>';
   npMainRender();
 }
-function npCheck(id,on){if(on)npChecked.add(id);else npChecked.delete(id);npRender();}
-function npBulkRender(){
-  const b=document.getElementById('npBulk');if(!b)return;
-  const list=notesForSel();
-  if(!list.length){b.innerHTML='';return;}
-  const k=npChecked.size,all=k&&k===list.length;
-  b.innerHTML=`<div class="np-bulk${k?' on':''}"><label><input type="checkbox" ${all?'checked':''} onchange="npCheckAll(this.checked)">${k?`${k} selected`:'Select notes'}</label>${k?`<span class="npb-btns"><button onclick="npBulkShow(true)" title="Show the selected notes as sticky notes">📌 Pin</button><button onclick="npBulkShow(false)" title="Take the selected notes off your screen">Unpin</button><button class="danger" onclick="npBulkDelete()">Delete</button></span>`:''}</div>`;
-}
-function npCheckAll(on){npChecked=on?new Set(notesForSel().map(n=>n.id)):new Set();npRender();}
-function npBulkShow(on){(state.notes||[]).forEach(n=>{if(npChecked.has(n.id)){n.shown=on;if(on&&drawerClosed&&!(drawerAll&&!activeFilter.size))noteScopes(n).forEach(id=>activeFilter.add(id));}});save();npRender();render();}
-function npBulkDelete(){if(!npChecked.size)return;askDelete('notes',[...npChecked]);}
 function npSelect(id){if(npEditing)npCommit();npId=id;npRender();}
 function newNote(){
   if(npEditing)npCommit();
   state.notes=state.notes||[];const now=new Date().toISOString();
-  const n={id:uid(),scope:'general',title:'',html:'',attached:[],comments:[],created:now,updated:now};setNoteScopes(n,[...npSel].filter(k=>k!=='general'));
+  const n={id:uid(),scope:npScope,title:'',html:'',attached:[],comments:[],created:now,updated:now};
   state.notes.push(n);npId=n.id;npSnap={title:'',html:'',attached:[]};npEditing=true;npRender();
 }
 function npToolbar(isP){
@@ -1759,7 +1804,7 @@ function npToolbar(isP){
    <button onclick="npCmd('removeFormat')">Clear formatting</button></div>`;
 }
 function npMainRender(){
-  const m=document.getElementById('npMain'),n=curNote(),isP=!!(n&&noteScopes(n).length),ed=npEditing;
+  const m=document.getElementById('npMain'),n=curNote(),isP=npScope!=='general',ed=npEditing;
   if(!n){m.className='np-main';m.innerHTML=`<div class="empty-cat">${catSVG('sleep',4)}<span>${isP?'No notes for this pharmacy yet. Click + New note to start one.':'No general notes yet. Click + New note to start one.'}</span></div>`;return;}
   m.className='np-main'+(ed?' np-editing':'');
   m.innerHTML=`<div class="np-head">
@@ -1767,7 +1812,6 @@ function npMainRender(){
      <div class="np-actions">${ed?`<button class="primary" onclick="npSave()">Save</button><button class="ghost" onclick="npCancel()">Cancel</button>`:`<button class="ghost" onclick="npToggleShown(${n.id})" title="Show this note as a sticky note on your screen">${n.shown?'✓ On screen':'Pin to screen'}</button><button class="ghost" onclick="npEdit()">Edit</button><button class="ghost" style="color:var(--urgent)" onclick="askDelete('note',${n.id})">Delete</button>`}</div>
    </div>
    <div class="np-meta">Last saved ${esc(mnlToET(n.updated))} ET${ed?'. Changes also save when you switch notes or close.':''}</div>
-   <div class="np-filed">${npFiledHTML(n,ed)}</div>
    ${ed?npToolbar(isP)+'<div class="np-hint">To link a task: highlight some words, click <b>Link to task</b>, and pick the task. Nothing highlighted? The task name is added as a link. Later, click a linked phrase to jump to that task.</div>':(/tasklink/.test(n.html||'')?'<div class="np-hint">Phrases marked with ↗ are linked to tasks. Click one to jump to it.</div>':'')}
    <div id="npEditor" class="np-editor" contenteditable="${ed}" spellcheck="true" onpaste="npPaste(event)" onclick="npEdClick(event)" oninput="npLiveSnip()">${n.html||''}</div>
    <div id="npAtt" class="np-att"></div>
@@ -1776,21 +1820,6 @@ function npMainRender(){
    <div style="text-align:right;margin-top:6px"><button class="ghost" onclick="npAddComment()">Add comment</button></div>`;
   npAttRender();npCmtRender();npMarkLinks();
   if(ed){const t=document.getElementById('npTitleIn');if(!n.title)t.focus();else document.getElementById('npEditor').focus();}
-}
-function npFiledHTML(n,ed){
-  const sc=noteScopes(n);
-  const chips=sc.length?sc.map(id=>`<span class="np-ph big" style="--c:${state.pharmacies[id].color}">${esc(state.pharmacies[id].name)}${ed?`<button title="Remove this pharmacy" onclick="npFile('${id}',false)">✕</button>`:''}</span>`).join(''):'<span class="np-ph big" style="--c:var(--navy)">General (no pharmacy)</span>';
-  if(!ed)return `<span class="npf-l">Filed under</span>${chips}`;
-  const ids=Object.keys(state.pharmacies).filter(id=>!sc.includes(id)).sort((a,b)=>state.pharmacies[a].name.localeCompare(state.pharmacies[b].name));
-  return `<span class="npf-l">Filed under</span>${chips}<span class="tbw"><button class="npf-add" onclick="togglePop(this,event)">+ Pharmacy ▾</button><div class="pop pop-list" onclick="event.stopPropagation()"><div class="pk-h">Add this note to</div>${ids.length>6?'<input class="pk-s" placeholder="Search pharmacies" oninput="npPickFilter(this)">':''}<div class="pk-items">${ids.map(id=>`<button class="pi" data-s="${esc(state.pharmacies[id].name.toLowerCase())}" onclick="npFile('${id}',true)">${esc(state.pharmacies[id].name)}</button>`).join('')||'<div class="empty" style="padding:6px">Already in every pharmacy.</div>'}</div></div></span>`;
-}
-function npFile(id,on){
-  const n=curNote();if(!n)return;
-  const ti=document.getElementById('npTitleIn'),ed=document.getElementById('npEditor');
-  if(ti&&ed){n.html=cleanHTML(ed.innerHTML);n.title=ti.value.trim();}
-  const sc=noteScopes(n);setNoteScopes(n,on?[...sc,id]:sc.filter(x=>x!==id));
-  if(on)npSel.add(id);
-  closePop();save();npRender();
 }
 function npEdit(){const n=curNote();if(!n)return;npSnap={title:n.title,html:n.html,attached:[...(n.attached||[])]};npEditing=true;npRender();}
 function npCommit(){
@@ -1814,12 +1843,11 @@ document.addEventListener('click',closePop);
 function npLiveTitle(v){const b=document.querySelector('#npList .np-item.on b');if(b)b.textContent=v.trim()||'Untitled note';}
 function npLiveSnip(){const s=document.querySelector('#npList .np-item.on span'),e=document.getElementById('npEditor');if(s&&e)s.textContent=e.textContent.trim().slice(0,70)||'(empty)';}
 function npPickerHTML(head,fn,exclude){
-  const groups=[];const cn=curNote(),sc=cn?noteScopes(cn):[];
-  if(sc.length){sc.forEach(pid=>groups.push({pid,label:state.pharmacies[pid].name,tasks:state.pharmacies[pid].tasks}));}
-  else{
+  const groups=[];
+  if(npScope==='general'){
     Object.keys(state.pharmacies).sort((x,y)=>state.pharmacies[x].name.localeCompare(state.pharmacies[y].name)).forEach(pid=>groups.push({pid,label:state.pharmacies[pid].name,tasks:state.pharmacies[pid].tasks}));
     groups.push({pid:'things',label:'Random tasks (Things)',tasks:state.things});
-  }
+  } else if(state.pharmacies[npScope])groups.push({pid:npScope,label:state.pharmacies[npScope].name,tasks:state.pharmacies[npScope].tasks});
   let n=0;
   const body=groups.map(g=>{
     const ts=[...g.tasks].filter(t=>!exclude.has(g.pid+':'+t.id)).sort((x,y)=>(x.done?1:0)-(y.done?1:0));
@@ -1864,24 +1892,10 @@ function npUnlink(){
 }
 function npMarkLinks(){
   const ed=document.getElementById('npEditor');if(!ed)return;
-  ed.querySelectorAll('.tasklink').forEach(l=>{const tg=findTarget(l.dataset.pid||(curNote()?curNote().scope:''),l.dataset.task);l.classList.toggle('dead',!tg);l.title=tg?(npEditing?'Linked to: ':'Go to task: ')+tg.name+(npScope==='general'?' ('+tg.group+')':''):'This task no longer exists';});
+  ed.querySelectorAll('.tasklink').forEach(l=>{const tg=findTarget(l.dataset.pid||npScope,l.dataset.task);l.classList.toggle('dead',!tg);l.title=tg?(npEditing?'Linked to: ':'Go to task: ')+tg.name+(npScope==='general'?' ('+tg.group+')':''):'This task no longer exists';});
 }
-function npEdClick(ev){if(npEditing)return;const l=ev.target.closest('.tasklink');if(l)openLinkedTask(l.dataset.pid||(curNote()?curNote().scope:''),l.dataset.task);}
-function flashEl(id){
-  const el=document.getElementById(id);if(!el)return;
-  el.scrollIntoView({behavior:'smooth',block:'center'});
-  el.classList.remove('flash-highlight');void el.offsetWidth;el.classList.add('flash-highlight');setTimeout(()=>el.classList.remove('flash-highlight'),1600);
-  document.querySelectorAll('.glow-ring').forEach(r=>r.remove());
-  let tries=0,last=null;
-  (function place(){
-    const r=el.getBoundingClientRect();
-    if(last&&Math.abs(r.top-last)>1&&tries++<20){last=r.top;return setTimeout(place,60);}
-    if(!last&&tries++<1){last=r.top;return setTimeout(place,60);}
-    const g=document.createElement('div');g.className='glow-ring';
-    g.style.cssText=`left:${r.left+scrollX-4}px;top:${r.top+scrollY-4}px;width:${r.width+8}px;height:${r.height+8}px;`;
-    document.body.appendChild(g);setTimeout(()=>g.remove(),1550);
-  })();
-}
+function npEdClick(ev){if(npEditing)return;const l=ev.target.closest('.tasklink');if(l)openLinkedTask(l.dataset.pid||npScope,l.dataset.task);}
+function flashEl(id){const el=document.getElementById(id);if(!el)return;el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.add('flash-highlight');setTimeout(()=>el.classList.remove('flash-highlight'),1600);}
 function openLinkedTask(pid,tid){
   const tg=findTarget(pid,tid);
   if(!tg){notice('That task no longer exists. It was deleted or, for random tasks, completed.','Task not found');return;}
@@ -2082,9 +2096,9 @@ addEventListener('resize',()=>{if(dockPanel)dpLayout();});
 let skPos={};try{skPos=JSON.parse(localStorage.getItem('pf_sk_pos')||'{}')||{};}catch(e){}
 function skSavePos(){try{localStorage.setItem('pf_sk_pos',JSON.stringify(skPos));}catch(e){}}
 function stickyHTML(n,i,free){
-  const scs=noteScopes(n),p=scs.length&&state.pharmacies[scs[0]];
+  const p=n.scope!=='general'&&state.pharmacies[n.scope];
   const pos=free?`left:${skPos[n.id].x}px;top:${skPos[n.id].y}px;`:'';
-  return `<div class="sticky${n.skMin?' min':''}${free?' free':''}" data-id="${n.id}" style="${pos}--rot:${i%2?.8:-.8}deg;--tc:${p?p.color:'var(--navy)'}"><div class="sk-tape" title="Drag to move. Double-click to send it back to the corner."></div><div class="sk-head" title="Drag to move this note anywhere"><span class="sk-title">${esc(n.title||'Untitled note')}</span><span class="sk-btns"><button title="Open in the notepad" onclick="openNotes('${n.scope||'general'}',${n.id})">✎</button><button title="${n.skMin?'Show the whole note':'Hide the note text'}" onclick="skMin(${n.id})">${n.skMin?'+':'–'}</button><button title="Take off the screen" onclick="skHide(${n.id})">✕</button></span></div>${scs.map(id=>`<span class="sk-tab" style="--tc:${state.pharmacies[id].color}">${esc(state.pharmacies[id].name)}</span>`).join(' ')}<div class="sk-body" onclick="skClick(event,'${n.scope||'general'}')">${n.html||'<i>(empty)</i>'}</div></div>`;
+  return `<div class="sticky${n.skMin?' min':''}${free?' free':''}" data-id="${n.id}" style="${pos}--rot:${i%2?.8:-.8}deg;--tc:${p?p.color:'var(--navy)'}"><div class="sk-tape" title="Drag to move. Double-click to send it back to the corner."></div><div class="sk-head" title="Drag to move this note anywhere"><span class="sk-title">${esc(n.title||'Untitled note')}</span><span class="sk-btns"><button title="Open in the notepad" onclick="openNotes('${n.scope}',${n.id})">✎</button><button title="${n.skMin?'Show the whole note':'Hide the note text'}" onclick="skMin(${n.id})">${n.skMin?'+':'–'}</button><button title="Take off the screen" onclick="skHide(${n.id})">✕</button></span></div>${p?`<span class="sk-tab">${esc(p.name)}</span>`:''}<div class="sk-body" onclick="skClick(event,'${n.scope}')">${n.html||'<i>(empty)</i>'}</div></div>`;
 }
 function renderStickies(){
   const box=document.getElementById('stickies'),fr=document.getElementById('skFree');if(!box||!fr)return;
@@ -2121,7 +2135,7 @@ function skHide(id){const n=skFind(id);if(!n)return;n.shown=false;save();render(
 function skClick(e,scope){const l=e.target.closest('.tasklink');if(l)openLinkedTask(l.dataset.pid||scope,+l.dataset.task);}
 function npToggleShown(id){
   const n=skFind(id);if(!n)return;n.shown=!n.shown;
-  if(n.shown&&drawerClosed&&!(drawerAll&&!activeFilter.size))noteScopes(n).forEach(id=>activeFilter.add(id));
+  if(n.shown&&drawerClosed&&n.scope!=='general'&&!(drawerAll&&!activeFilter.size))activeFilter.add(n.scope);
   save();render();npRender();
 }
 // ===== file drawer open / close =====
@@ -2129,13 +2143,6 @@ let drawerClosed=false,drawerAll=false;try{drawerClosed=localStorage.getItem('pf
 function setDrawerAll(v){drawerAll=v;try{localStorage.setItem('pf_drawer_all',v?'1':'0');}catch(e){}}
 function setDrawer(closed){drawerClosed=closed;try{localStorage.setItem('pf_drawer_closed',closed?'1':'0');}catch(e){}drawerApply();render();}
 function toggleDrawer(){setDrawer(!drawerClosed);}
-function allPharmSelected(){const ids=Object.keys(state.pharmacies);return ids.length>0&&ids.every(id=>activeFilter.has(id));}
-function drawerSelectAll(){
-  if(allPharmSelected())activeFilter.clear();
-  else{Object.keys(state.pharmacies).forEach(id=>activeFilter.add(id));setDrawerAll(false);}
-  render();
-}
-function drAllSync(){const b=document.getElementById('drAll');if(!b)return;const on=allPharmSelected();b.classList.toggle('on',on);b.setAttribute('aria-checked',on);b.title=on?'All pharmacies selected. Click to clear.':'Select every pharmacy';}
 function drawerApply(){
   const d=document.querySelector('.card.drawer');if(!d)return;
   d.classList.toggle('closed',drawerClosed);
